@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.projeto_cm.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="com.example.projeto_cm.ui.Categories.CategoriesFragment"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="com.example.projeto_cm.ui.Favorites.FavoritesFragment"
+        tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/nav_wishList"
+        android:name="com.example.projeto_cm.ui.WishList.WishListFragment"
+        tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/nav_aboutus"
+        android:name="com.example.projeto_cm.ui.AboutUs.AboutUsFragment"
+        tools:layout="@layout/fragment_aboutus" />
+
+    <fragment
+        android:id="@+id/nav_accountSettings"
+        android:name="com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment"
+        tools:layout="@layout/fragment_accountsettings" />
+
+    <fragment
+        android:id="@+id/app_bar_messages"
+        android:name="com.example.projeto_cm.ui.Messages.MessagesFragment"
+        tools:layout="@layout/fragment_messages" />
+
+</navigation>
