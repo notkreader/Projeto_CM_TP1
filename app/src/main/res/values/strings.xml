@@ -23,4 +23,18 @@
     <string name="dark_mode">Dark Mode:</string>
     <string name="change_password">Change Password</string>
     <string name="delete_account">Delete Account</string>
+    
+    
+    <string name="app_name">ClickAndVisit</string>
+    <string name="str_icon">Icon</string>
+    <string name="str_email_address">Email Address</string>
+    <string name="str_default">Default input</string>
+    <string name="str_password">Password</string>
+    <string name="str_remember_me">Remember me</string>
+    <string name="str_login">Login</string>
+    <string name="str_no_account">Não possui conta?</string>
+    <string name="str_already_registered">Já possui conta?</string>
+    <string name="str_registar">Registar</string>
+    <string name="str_name">Nome</string>
+    <string name="str_confirm_password">Confirmar Password</string>
 </resources>
