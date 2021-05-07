@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "286133929058",
+    "project_id": "clickandvisit-59882",
+    "storage_bucket": "clickandvisit-59882.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286133929058:android:c8e85854ae783a94917d3b",
+        "android_client_info": {
+          "package_name": "com.example.projeto_cm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286133929058-a8rieesm97fd487ohocd776a79bg9edl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUsEmiEkzzXVGhMjIJ29HRbYU8lUbHdvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286133929058-a8rieesm97fd487ohocd776a79bg9edl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
