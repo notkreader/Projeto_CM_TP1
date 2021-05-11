@@ -97,8 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.register1:
-                setContentView(R.layout.activity_register_user);
-                //startActivity(new Intent(this, RegisterUser.class));
+                startActivity(new Intent(this, RegisterUser.class));
                 break;
         }
     }

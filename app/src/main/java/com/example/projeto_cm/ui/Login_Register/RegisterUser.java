@@ -1,8 +1,10 @@
 package com.example.projeto_cm.ui.Login_Register;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
@@ -24,10 +27,13 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private TextView registerUser, login;
     private EditText editTextEmail, editTextName, editTextPassword, editTextConfirmedPassword;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDataBase= FirebaseDatabase.getInstance("https://clickandvisit-59882-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ActionBar acb = getSupportActionBar();
+        acb.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
@@ -50,7 +56,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.registerLogin:
-                setContentView(R.layout.activity_main);
+                finish();
                 break;
             case R.id.buttonRegister:
                 registerUser();
@@ -65,6 +71,16 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String password = editTextPassword.getText().toString().trim();
         String confirmedPassword = editTextConfirmedPassword.getText().toString().trim();
 
+        if(email.isEmpty()){
+            editTextEmail.setError("Email required!");
+            editTextEmail.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editTextEmail.setError("Please provide valid email!");
+            editTextEmail.requestFocus();
+            return;
+        }
         if(name.isEmpty()){
             editTextName.setError("Name required!");
             editTextName.requestFocus();
@@ -73,16 +89,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         if(!password.equals(confirmedPassword)){
             editTextConfirmedPassword.setError("Passwords don't match!");
             editTextConfirmedPassword.requestFocus();
-            return;
-        }
-        if(email.isEmpty()){
-            editTextEmail.setError("Email required!");
-            editTextEmail.requestFocus();
-            return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please provide valid error!");
-            editTextEmail.requestFocus();
             return;
         }
         if(password.isEmpty()){
@@ -103,27 +109,16 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
 
        mAuth.createUserWithEmailAndPassword(email,password)
-               .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                   @Override
-                   public void onComplete(@NonNull Task<AuthResult> task) {
-                       if(task.isSuccessful()){
-                           User user= new User(name, email);
-
-                           FirebaseDatabase.getInstance().getReference("Users")
-                                   .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                   .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                               @Override
-                               public void onComplete(@NonNull Task<Void> task) {
-                                   if(task.isSuccessful()){
-                                       Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                   }else{
-                                       Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                                   }
-                               }
-                           });
-                       }else{
-                           Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                       }
+               .addOnCompleteListener(task -> {
+                   if(task.isSuccessful()){
+                       User user= new User(name, email);
+                       System.out.println(mDataBase);
+                       mDataBase.child("Users")
+                               .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                               .setValue(user);
+                   }else{
+                       Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                       System.out.println("ADEUSSSSSSSSSSS");
                    }
                });
     }
