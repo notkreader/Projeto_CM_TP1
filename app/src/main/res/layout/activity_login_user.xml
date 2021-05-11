@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2196F3"
-    tools:context=".LoginActivity">
+    tools:context=".ui.Login_Register.LoginActivity">
 
     <ImageView
         android:id="@+id/imageViewRegisterIcon"
@@ -114,15 +114,15 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <Button
-        android:id="@+id/button1Register"
+        android:id="@+id/register1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:onClick="goToRegister"
         android:text="@string/str_registar"
         app:backgroundTint="#2C4AD3"
         app:layout_constraintBottom_toBottomOf="@+id/textViewNoAccount"
         app:layout_constraintStart_toEndOf="@+id/textViewNoAccount"
-        app:layout_constraintTop_toTopOf="@+id/textViewNoAccount" />
+        app:layout_constraintTop_toTopOf="@+id/textViewNoAccount"
+        app:layout_constraintVertical_bias="0.375" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
