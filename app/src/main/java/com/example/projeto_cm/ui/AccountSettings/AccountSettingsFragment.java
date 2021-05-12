@@ -66,7 +66,6 @@ public class AccountSettingsFragment extends Fragment {
             editor.apply();
         });
 
-
         return view;
     }
 
