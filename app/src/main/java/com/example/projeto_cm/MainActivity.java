@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity{
         }
 
 
+
+
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity{
             case R.id.app_bar_messages:
                 fm.replace(R.id.nav_host_fragment, new MessagesFragment());
                 fm.commit();
+                return true;
             default:
                 return false;
         }
