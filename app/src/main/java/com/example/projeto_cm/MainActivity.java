@@ -4,6 +4,8 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.DrawableWrapper;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -54,8 +57,6 @@ public class MainActivity extends AppCompatActivity{
         }
 
 
-
-
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
@@ -78,6 +79,13 @@ public class MainActivity extends AppCompatActivity{
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+        navigationView.getMenu().findItem(R.id.nav_logOut).setOnMenuItemClickListener(menuItem -> {
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginUser.class));
+            return true;
+        });
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -88,9 +96,6 @@ public class MainActivity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-
 
     }
 
@@ -112,7 +117,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
@@ -121,7 +125,6 @@ public class MainActivity extends AppCompatActivity{
             case R.id.app_bar_messages:
                 fm.replace(R.id.nav_host_fragment, new MessagesFragment());
                 fm.commit();
-                return true;
             default:
                 return false;
         }
