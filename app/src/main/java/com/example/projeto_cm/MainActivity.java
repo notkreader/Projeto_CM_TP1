@@ -37,14 +37,24 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        boolean isDarkModeOn;
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            isDarkModeOn = true;
+        }else{
+            isDarkModeOn = false;
+        }
+        final boolean dmo = sharedPreferences.getBoolean("isDarkModeOn", isDarkModeOn);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        if (dmo == true) {
             setTheme(R.style.DarkTheme);
         } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             setTheme(R.style.LightTheme);
         }
+
+
+
 
         super.onCreate(savedInstanceState);
 
