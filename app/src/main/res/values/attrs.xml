@@ -5,5 +5,7 @@
         <attr name="text_color" format="color"/>
         <attr name="button_color" format="color"/>
         <attr name="drawer_color" format="color"/>
+        <attr name="drawer_text_color" format="color"/>
+        <attr name="app_bar_color" format="color"/>
     </declare-styleable>
 </resources>
