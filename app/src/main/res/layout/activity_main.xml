@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
-    android:background="@drawable/gradient_blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -17,7 +16,9 @@
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:paddingTop="60dp"
-        android:background="@color/white"
+        android:background="?attr/drawer_color"
+        app:itemTextColor="?attr/text_color"
+        app:itemIconTint="?attr/text_color"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

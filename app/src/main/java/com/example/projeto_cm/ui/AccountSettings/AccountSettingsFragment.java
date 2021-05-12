@@ -1,5 +1,7 @@
 package com.example.projeto_cm.ui.AccountSettings;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,18 +31,6 @@ public class AccountSettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_accountsettings, container, false);
 
         Button btn1 = (Button) view.findViewById(R.id.back_button);
-        Switch darkMode = (Switch) view.findViewById(R.id.switch_darkMode);
-        darkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked == true) {
-                    view.setBackgroundResource(R.drawable.gradient_black);
-
-                } else {
-                    view.setBackgroundResource(R.drawable.gradient_blue);
-                }
-            }
-        });
 
         btn1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -49,6 +39,31 @@ public class AccountSettingsFragment extends Fragment {
                 ft.replace(R.id.nav_host_fragment, new HomeFragment());
                 ft.commit();
             }
+        });
+
+        Switch s = view.findViewById(R.id.switch_darkMode);
+
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
+
+        if (isDarkModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            s.setChecked(true);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            s.setChecked(false);
+        }
+
+        s.setOnClickListener(v -> {
+            if (isDarkModeOn) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                editor.putBoolean("isDarkModeOn", false);
+            }else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                editor.putBoolean("isDarkModeOn", true);
+            }
+            editor.apply();
         });
 
         return view;
