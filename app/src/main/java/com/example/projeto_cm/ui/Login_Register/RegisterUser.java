@@ -56,6 +56,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.registerLogin:
+                startActivity(new Intent(RegisterUser.this, LoginUser.class));
                 finish();
                 break;
             case R.id.buttonRegister:
@@ -115,10 +116,21 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                        System.out.println(mDataBase);
                        mDataBase.child("Users")
                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                               .setValue(user);
+                               .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                           @Override
+                           public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(RegisterUser.this, LoginUser.class));
+                                    finish();
+                                }else{
+                                    Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                }
+                           }
+                       });
                    }else{
                        Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                       System.out.println("ADEUSSSSSSSSSSS");
+
                    }
                });
     }

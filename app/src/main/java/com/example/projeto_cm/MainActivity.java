@@ -1,5 +1,6 @@
 package com.example.projeto_cm;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,9 +8,16 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.example.projeto_cm.ui.Login_Register.RegisterUser;
+import com.example.projeto_cm.ui.Login_Register.LoginUser;
 import com.example.projeto_cm.ui.Messages.MessagesFragment;
+import com.example.projeto_cm.ui.Requests.RequestsFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,19 +25,17 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    private TextView register;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_user);
-        register= (TextView) findViewById(R.id.register1);
-        register.setOnClickListener(this);
 
-/*
+        mAuth = FirebaseAuth.getInstance();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,7 +65,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-*/
+
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser fbUser = mAuth.getCurrentUser();
+        if(fbUser==null){
+            startActivity(new Intent(MainActivity.this, LoginUser.class));
+            finish();
+        }
     }
 
     @Override
@@ -92,13 +110,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 || super.onSupportNavigateUp();
     }
 
-
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.register1:
-                startActivity(new Intent(this, RegisterUser.class));
-                break;
-        }
-    }
 }

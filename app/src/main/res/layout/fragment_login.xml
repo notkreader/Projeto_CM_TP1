@@ -56,7 +56,7 @@
             app:layout_constraintTop_toTopOf="@+id/view" />
 
         <EditText
-            android:id="@+id/editTextEmailAddressLogin"
+            android:id="@+id/loginEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -77,11 +77,11 @@
             android:text="@string/str_password"
             android:textColor="#0B0B0B"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressLogin"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressLogin" />
+            app:layout_constraintStart_toStartOf="@+id/loginEmail"
+            app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
         <EditText
-            android:id="@+id/editTextPasswordLogin"
+            android:id="@+id/loginPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints=""
@@ -99,8 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/str_remember_me"
-            app:layout_constraintStart_toStartOf="@+id/editTextPasswordLogin"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin" />
+            app:layout_constraintStart_toStartOf="@+id/loginPassword"
+            app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
         <TextView
             android:id="@+id/textViewNoAccount"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <Button
-            android:id="@+id/button1Login"
+            android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -125,7 +125,7 @@
             app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
         <Button
-            android:id="@+id/register1"
+            android:id="@+id/loginRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
