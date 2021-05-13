@@ -56,9 +56,6 @@ public class MainActivity extends AppCompatActivity{
             setTheme(R.style.LightTheme);
         }
 
-
-
-
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
@@ -69,13 +66,10 @@ public class MainActivity extends AppCompatActivity{
         getSupportActionBar().setTitle("");
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.nav_host_fragment, new RequestsFragment());
-                fm.commit();
-            }
+        fab.setOnClickListener(view -> {
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+            fm.replace(R.id.nav_host_fragment, new RequestsFragment());
+            fm.commit();
         });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -117,7 +111,6 @@ public class MainActivity extends AppCompatActivity{
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
 
 
     @Override

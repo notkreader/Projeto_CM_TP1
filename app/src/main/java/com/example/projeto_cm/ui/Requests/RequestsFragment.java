@@ -2,7 +2,6 @@ package com.example.projeto_cm.ui.Requests;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projeto_cm.R;
-import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
 
 public class RequestsFragment extends Fragment {
