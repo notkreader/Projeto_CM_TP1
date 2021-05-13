@@ -71,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="605dp"
+        android:textColor="@color/white"
         android:background="?android:attr/selectableItemBackground"
         android:rotation="180"
         android:text=">"

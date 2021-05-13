@@ -19,6 +19,7 @@
         android:rotation="180"
         android:text=">"
         android:textSize="30dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/text_aboutUs"
         app:layout_constraintStart_toStartOf="parent"
