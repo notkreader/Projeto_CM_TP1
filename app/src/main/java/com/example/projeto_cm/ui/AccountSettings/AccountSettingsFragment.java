@@ -22,8 +22,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.projeto_cm.ChangePasswordFragment;
+import com.example.projeto_cm.ChangeUsernameFragment;
 import com.example.projeto_cm.R;
 import com.example.projeto_cm.ui.home.HomeFragment;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AccountSettingsFragment extends Fragment {
 
@@ -32,13 +39,31 @@ public class AccountSettingsFragment extends Fragment {
 
         Button btn1 = (Button) view.findViewById(R.id.back_button);
 
-        btn1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment, new HomeFragment());
-                ft.commit();
-            }
+        btn1.setOnClickListener(v -> {
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new HomeFragment());
+            ft.commit();
+        });
+
+        TextView username = view.findViewById(R.id.username);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        username.setText(mAuth.getCurrentUser().getDisplayName());
+
+        Button editUsername = view.findViewById(R.id.editUsername);
+
+        editUsername.setOnClickListener(v -> {
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new ChangeUsernameFragment());
+            ft.commit();
+        });
+
+        Button editPassword = view.findViewById(R.id.btn_changePassword);
+
+        editPassword.setOnClickListener(v -> {
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new ChangePasswordFragment());
+            ft.commit();
         });
 
         Switch s = view.findViewById(R.id.switch_darkMode);
