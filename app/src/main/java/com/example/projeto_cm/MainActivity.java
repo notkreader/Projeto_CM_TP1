@@ -65,14 +65,21 @@ public class MainActivity extends AppCompatActivity{
             setTheme(R.style.LightTheme);
         }
 
+      try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser fbUser = mAuth.getCurrentUser();
 
-/*
 
-*/
+
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
