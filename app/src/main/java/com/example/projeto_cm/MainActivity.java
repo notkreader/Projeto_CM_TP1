@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity{
 
         navigationView.getMenu().findItem(R.id.nav_logOut).setOnMenuItemClickListener(menuItem -> {
             mAuth.signOut();
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             startActivity(new Intent(MainActivity.this, LoginUser.class));
             return true;
         });
