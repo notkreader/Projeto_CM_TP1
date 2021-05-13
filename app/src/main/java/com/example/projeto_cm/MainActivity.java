@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         boolean isDarkModeOn;
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
@@ -59,11 +57,8 @@ public class MainActivity extends AppCompatActivity{
         }
 
 
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
