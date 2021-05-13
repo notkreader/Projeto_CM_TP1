@@ -91,7 +91,7 @@
         android:text="@string/dark_mode"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_changePassword"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -102,12 +102,12 @@
         android:layout_marginStart="22dp"
         android:layout_marginEnd="112dp"
         android:layout_marginBottom="84dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_changePassword"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_darkMode" />
 
     <Button
-        android:id="@+id/btn_changePassword"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
@@ -122,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_darkMode" />
 
     <Button
-        android:id="@+id/btn_deleteAccount"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
@@ -137,7 +137,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_changePassword" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
