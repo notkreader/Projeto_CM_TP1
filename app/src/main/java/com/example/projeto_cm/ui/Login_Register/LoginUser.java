@@ -1,6 +1,7 @@
 package com.example.projeto_cm.ui.Login_Register;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -29,6 +30,9 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ActionBar acb = getSupportActionBar();
+        acb.hide();
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login_user);
