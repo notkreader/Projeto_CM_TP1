@@ -16,8 +16,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+
+import org.jetbrains.annotations.NotNull;
 
 public class ChangePasswordFragment extends Fragment {
 
@@ -37,24 +44,34 @@ public class ChangePasswordFragment extends Fragment {
             ft.commit();
         });
 
-        /*btnSave.setOnClickListener(v -> {
+        btnSave.setOnClickListener(v -> {
             if(oldPassword.getText().toString().equals("")){
                 Toast.makeText(getActivity(), "Password can't be empty! Try again!", Toast.LENGTH_LONG).show();
-            }else if(!FirebaseAuth.getInstance().getCurrentUser().getPassword().toString().equals(oldPassword.toString())){
-                Toast.makeText(getActivity(), "Current Password field is not correct! Try again!", Toast.LENGTH_LONG).show();
             }else{
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-                FirebaseAuth.getInstance().getCurrentUser().updatePassword(newPassword.toString());
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String email = user.getEmail();
+                AuthCredential credential = EmailAuthProvider.getCredential(email, oldPassword.getText().toString());
 
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment, new ReturnHomeMessageFragment());
-                ft.commit();
-                Toast.makeText(getActivity(), "Password Updated Successfully!", Toast.LENGTH_LONG).show();
+                user.reauthenticate(credential).addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        user.updatePassword(newPassword.getText().toString());
+
+                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                        ft.replace(R.id.nav_host_fragment, new ReturnHomeMessageFragment());
+                        ft.commit();
+                        Toast.makeText(getActivity(), "Password Updated Successfully!", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getActivity(), "Old Password is not correct! Try again!", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
             }
 
-        });*/
+        });
 
 
         return view;
