@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projeto_cm.ChangePasswordFragment;
 import com.example.projeto_cm.ChangeUsernameFragment;
+import com.example.projeto_cm.DeleteAccountFragment;
 import com.example.projeto_cm.R;
 import com.example.projeto_cm.ui.home.HomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,13 @@ public class AccountSettingsFragment extends Fragment {
         editPassword.setOnClickListener(v -> {
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
             ft.replace(R.id.nav_host_fragment, new ChangePasswordFragment());
+            ft.commit();
+        });
+
+        Button deleteAccount = view.findViewById(R.id.btn_deleteAccount);
+        deleteAccount.setOnClickListener(v -> {
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new DeleteAccountFragment());
             ft.commit();
         });
 
