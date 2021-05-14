@@ -1,17 +1,10 @@
 package com.example.projeto_cm;
 
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.DrawableWrapper;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.projeto_cm.ui.Login_Register.LoginUser;
@@ -44,7 +37,7 @@ public class MainActivity extends AppCompatActivity{
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    private FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
     public static DatabaseReference mDataBase= FirebaseDatabase.getInstance("https://clickandvisit-59882-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
     @Override
@@ -75,9 +68,6 @@ public class MainActivity extends AppCompatActivity{
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser fbUser = mAuth.getCurrentUser();
-
-
-
 
 
         setContentView(R.layout.activity_main);
