@@ -2,23 +2,26 @@ package com.example.projeto_cm.ui.Requests;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,14 +38,12 @@ import com.example.projeto_cm.User;
 import com.example.projeto_cm.Visits;
 import com.example.projeto_cm.ui.Map.MapFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
-import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -51,14 +52,14 @@ import com.google.firebase.storage.UploadTask;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
 public class RequestsFragment extends Fragment {
-    private EditText locationTxt, titleET, descriptionET;
+    private EditText locationET, voiceET, titleET, descriptionET;
     private Button uploadImgBtn, sendBtn;
+    SpeechRecognizer speechRecognizer;
     ArrayList<Uri> images_rui;
     ProgressDialog pd;
     int countImages;
@@ -66,9 +67,10 @@ public class RequestsFragment extends Fragment {
     private static final int CAMERA_REQUEST_CODE = 100;
     private static final int STORAGE_REQUEST_CODE = 200;
 
-
     private static final int IMAGE_PICK_CAMERA_CODE = 300;
     private static final int IMAGE_PICK_GALLERY_CODE = 400;
+
+    private static final int RECORD_AUDIO_REQUEST_CODE = 1;
 
     private View view;
     String[] cameraPermissions;
@@ -76,6 +78,7 @@ public class RequestsFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_requests, container, false);
         sendBtn = (Button) view.findViewById(R.id.button_submit);
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -83,7 +86,6 @@ public class RequestsFragment extends Fragment {
         pd = new ProgressDialog(view.getContext());
         images_rui = new ArrayList<>();
         countImages=0;
-
 
         MainActivity.mDataBase.child("Users").child(MainActivity.mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -101,12 +103,12 @@ public class RequestsFragment extends Fragment {
             }
         });
 
-        locationTxt = (EditText) view.findViewById(R.id.input_location);
+        locationET = (EditText) view.findViewById(R.id.input_location);
         Bundle bundleLatlng = this.getArguments();
         if (bundleLatlng == null || bundleLatlng.isEmpty()) {
-            locationTxt.setText("");
+            locationET.setText("");
         } else {
-            locationTxt.setText(bundleLatlng.getString("LAT_LNG"));
+            locationET.setText(bundleLatlng.getString("LAT_LNG"));
         }
 
         Button backBtn = (Button) view.findViewById(R.id.back_button);
@@ -129,6 +131,85 @@ public class RequestsFragment extends Fragment {
             }
         });
 
+
+        voiceET = (EditText) view.findViewById(R.id.input_description);
+
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            checkVoicePermission();
+        }
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(getContext());
+        final Intent speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+
+            }
+
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+
+            }
+
+            @Override
+            public void onError(int error) {
+
+            }
+
+            @Override
+            public void onResults(Bundle results) {
+                ArrayList<String> array = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                voiceET.setText(array.get(0));
+            }
+
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+
+            }
+
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+
+            }
+        });
+
+        Button voiceBtn = (Button) view.findViewById(R.id.button_mic);
+        voiceBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_UP:
+                        speechRecognizer.stopListening();
+                        voiceET.setHint("Descrição");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        voiceET.setText("");
+                        voiceET.setHint("A ouvir...");
+                        speechRecognizer.startListening(speechRecognizerIntent);
+                        break;
+                }
+                return false;
+            }
+        });
+
+
         titleET = (EditText) view.findViewById(R.id.requestTitle);
         descriptionET = (EditText) view.findViewById(R.id.input_description);
         uploadImgBtn = (Button) view.findViewById(R.id.button_upload);
@@ -147,15 +228,15 @@ public class RequestsFragment extends Fragment {
             public void onClick(View v) {
                 String title = titleET.getText().toString().trim();
                 String description = descriptionET.getText().toString().trim();
-                String location = locationTxt.getText().toString().trim();
+                String location = locationET.getText().toString().trim();
 
 
                 if (TextUtils.isEmpty(title)) {
-                    Toast.makeText(view.getContext(), "Title required!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Titulo necessário!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(description)) {
-                    Toast.makeText(view.getContext(), "Enter description!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Introduza uma descrição!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (images_rui.isEmpty()) {
@@ -177,7 +258,7 @@ public class RequestsFragment extends Fragment {
     }
 
     private void uploadData(String title, String description, ArrayList<String> uriList, String location) {
-        pd.setMessage("Sending...");
+        pd.setMessage("A enviar...");
         pd.show();
 
         String timeStamp = String.valueOf(System.currentTimeMillis());
@@ -201,7 +282,7 @@ public class RequestsFragment extends Fragment {
                                     dbRef.child(timeStamp).setValue(visit);
                                 }
                                 pd.dismiss();
-                                Toast.makeText(view.getContext(), "Visit published", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
                                 titleET.setText("");
                                 descriptionET.setText("");
                                 images_rui = null;
@@ -225,7 +306,7 @@ public class RequestsFragment extends Fragment {
                 @Override
                 public void onSuccess(Void unused) {
                     pd.dismiss();
-                    Toast.makeText(view.getContext(), "Visit published", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
 
                     titleET.setText("");
                     descriptionET.setText("");
@@ -242,10 +323,10 @@ public class RequestsFragment extends Fragment {
     }
 
     private void showImagePickDialog() {
-        String[] options = {"Camera", "Gallery"};
+        String[] options = {"Camera", "Galeria"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
-        builder.setTitle("Chose image from");
+        builder.setTitle("Escolher imagens de:");
 
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
@@ -310,6 +391,12 @@ public class RequestsFragment extends Fragment {
         ActivityCompat.requestPermissions(this.getActivity(), cameraPermissions, CAMERA_REQUEST_CODE);
     }
 
+    private void checkVoicePermission() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, RECORD_AUDIO_REQUEST_CODE);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -321,7 +408,7 @@ public class RequestsFragment extends Fragment {
                     if (cameraAccepted && storageAccepted) {
                         pickFromCamera();
                     } else {
-                        Toast.makeText(this.getContext(), "Camera & Storage both permissions are necessary...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), "Permissões de camera e armazenamento necessárias...", Toast.LENGTH_SHORT).show();
                     }
                 } else {
 
@@ -334,12 +421,16 @@ public class RequestsFragment extends Fragment {
                     if (storageAccepted) {
                         pickFromGallery();
                     } else {
-                        Toast.makeText(this.getContext(), "Storage permission necessary...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), "Permissão de armazenamento necessária...", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                 }
             }
             break;
+            case RECORD_AUDIO_REQUEST_CODE:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this.getContext(), "Permissão garantida", Toast.LENGTH_LONG).show();
+                }
         }
 
     }
