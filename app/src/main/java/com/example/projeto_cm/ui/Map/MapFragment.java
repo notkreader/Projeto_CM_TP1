@@ -1,25 +1,25 @@
 package com.example.projeto_cm.ui.Map;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projeto_cm.R;
+import com.example.projeto_cm.ui.Requests.RequestsFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,11 +30,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap map;
     private FusedLocationProviderClient flpc;
+    private LatLng markerLatlng;
     private boolean locationPermissionsGranted;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -46,6 +46,26 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
         checkPermissions();
+
+        Button selectBtn = (Button) view.findViewById(R.id.select_location_button);
+        selectBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(markerLatlng == null)
+                    Toast.makeText(getContext(), "Nenhum local selecionado", Toast.LENGTH_LONG).show();
+                else {
+                    Bundle bundleLatlng = new Bundle();
+                    bundleLatlng.putString("LAT_LNG", markerLatlng.latitude + " : " + markerLatlng.longitude);
+
+                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                    RequestsFragment reqFragment = new RequestsFragment();
+                    reqFragment.setArguments(bundleLatlng);
+                    ft.replace(R.id.nav_host_fragment, reqFragment);
+                    ft.commit();
+                }
+
+            }
+        });
 
         return view;
     }
@@ -95,9 +115,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latlng) {
+                markerLatlng = latlng;
                 map.clear();
                 moveCamera(latlng, DEFAULT_ZOOM);
                 moveMarker(latlng, latlng.latitude + " : " + latlng.longitude);
+
             }
         });
     }
