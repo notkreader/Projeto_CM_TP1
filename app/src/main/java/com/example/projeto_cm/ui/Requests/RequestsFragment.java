@@ -72,14 +72,14 @@ public class RequestsFragment extends Fragment {
 
     private static final int RECORD_AUDIO_REQUEST_CODE = 1;
 
-    private View view;
+    //private View view;
     String[] cameraPermissions;
     String[] storagePermissions;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_requests, container, false);
+        View view = inflater.inflate(R.layout.fragment_requests, container, false);
         sendBtn = (Button) view.findViewById(R.id.button_submit);
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -280,7 +280,7 @@ public class RequestsFragment extends Fragment {
                                     dbRef.child(timeStamp).setValue(visit);
                                 }
                                 pd.dismiss();
-                                Toast.makeText(view.getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
                                 titleET.setText("");
                                 descriptionET.setText("");
                                 images_rui = null;
@@ -290,7 +290,7 @@ public class RequestsFragment extends Fragment {
                             @Override
                             public void onFailure(@NonNull @NotNull Exception e) {
                                 pd.dismiss();
-                                Toast.makeText(view.getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                 countImages++;
@@ -304,7 +304,7 @@ public class RequestsFragment extends Fragment {
                 @Override
                 public void onSuccess(Void unused) {
                     pd.dismiss();
-                    Toast.makeText(view.getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
 
                     titleET.setText("");
                     descriptionET.setText("");
@@ -314,7 +314,7 @@ public class RequestsFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull @NotNull Exception e) {
                     pd.dismiss();
-                    Toast.makeText(view.getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -358,7 +358,7 @@ public class RequestsFragment extends Fragment {
         ContentValues cv = new ContentValues();
         cv.put(MediaStore.Images.Media.TITLE, "Temp Pick");
         cv.put(MediaStore.Images.Media.DESCRIPTION, "Temp Descr");
-        Uri img = view.getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
+        Uri img = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
         images_rui.add(img);
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

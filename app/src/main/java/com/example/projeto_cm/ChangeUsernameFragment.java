@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
@@ -47,6 +48,9 @@ public class ChangeUsernameFragment extends Fragment {
                 ft.replace(R.id.nav_host_fragment, new ReturnHomeMessageFragment());
                 ft.commit();
                 Toast.makeText(getActivity(), "Username Updated Successfully!", Toast.LENGTH_LONG).show();
+
+                NavigationView navigationView = getActivity().findViewById(R.id.nav_view);
+                navigationView.getMenu().findItem(R.id.nav_accountSettings).setTitle(newUsername.getText().toString());
             }else{
                 Toast.makeText(getActivity(), "Username can't be empty! Try again!", Toast.LENGTH_LONG).show();
             }

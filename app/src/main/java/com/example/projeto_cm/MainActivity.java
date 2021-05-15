@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -139,6 +141,10 @@ public class MainActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.getMenu().findItem(R.id.nav_accountSettings).setTitle(mAuth.getCurrentUser().getDisplayName());
+
         return true;
     }
 

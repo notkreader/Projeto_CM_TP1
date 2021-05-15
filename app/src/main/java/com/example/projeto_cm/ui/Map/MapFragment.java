@@ -97,7 +97,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         if(task.isSuccessful()) {
                             Log.d(TAG, "Found location");
                             Location currentLocation = (Location) task.getResult();
-                            //moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                         }
                         else {
                             Log.d(TAG, "Cannot find current location");

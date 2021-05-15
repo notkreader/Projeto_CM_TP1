@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background_color"
-    tools:context=".ui.AccountSettings.AccountSettingsFragment">
+    tools:context=".ui.Messages.MessagesFragment">
 
     <EditText
         android:id="@+id/input_location2"
