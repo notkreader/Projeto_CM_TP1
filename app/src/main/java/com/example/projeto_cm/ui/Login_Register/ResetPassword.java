@@ -42,8 +42,8 @@ public class ResetPassword extends AppCompatActivity {
     }
 
     private void resetPassword(){
-        String email = recoveryEmail.toString().trim();
-
+        String email = recoveryEmail.getText().toString().trim();
+        System.out.println(email);
         if(email.isEmpty()){
             recoveryEmail.setError("Email required!");
             recoveryEmail.requestFocus();

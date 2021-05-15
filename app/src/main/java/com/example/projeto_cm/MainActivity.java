@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity{
         }
         final boolean dmo = sharedPreferences.getBoolean("isDarkModeOn", isDarkModeOn);
 
-
         if (dmo == true) {
             setTheme(R.style.DarkTheme);
         } else {

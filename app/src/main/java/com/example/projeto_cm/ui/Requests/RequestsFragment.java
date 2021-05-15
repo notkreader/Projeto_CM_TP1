@@ -36,6 +36,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projeto_cm.MainActivity;
 import com.example.projeto_cm.R;
+import com.example.projeto_cm.Requests;
 import com.example.projeto_cm.User;
 import com.example.projeto_cm.Visits;
 import com.example.projeto_cm.ui.Map.MapFragment;
@@ -77,7 +78,9 @@ public class RequestsFragment extends Fragment {
 
     String[] cameraPermissions;
     String[] storagePermissions;
-
+    String isVisit;
+    String filePathAndName;
+    String userEmail;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -88,6 +91,9 @@ public class RequestsFragment extends Fragment {
         pd = new ProgressDialog(view.getContext());
         images_rui = new ArrayList<>();
         countImages=0;
+        isVisit="Requests";
+        filePathAndName = "Requests/" + "request_";
+        userEmail = MainActivity.mAuth.getCurrentUser().getEmail();
 
 
 
@@ -99,6 +105,11 @@ public class RequestsFragment extends Fragment {
                     TextView request = (TextView) view.findViewById(R.id.text_aboutUs);
                     request.setText("Guide Visit");
                     sendBtn.setText("Publish");
+                    isVisit = "Visits";
+                    filePathAndName= "Visits/" + "visit_";
+
+
+
                 }
             }
 
@@ -269,7 +280,7 @@ public class RequestsFragment extends Fragment {
         pd.show();
 
         String timeStamp = String.valueOf(System.currentTimeMillis());
-        String filePathAndName = "Visits/" + "visit_" + timeStamp;
+        filePathAndName +=  timeStamp;
         ArrayList<String> imgDownload = new ArrayList<>();
 
         if (!uriList.get(0).equals("noImage")) {
@@ -284,8 +295,11 @@ public class RequestsFragment extends Fragment {
                                 String downloadUri = uriTask.getResult().toString();
                                 if (uriTask.isSuccessful()) {
                                     imgDownload.add(downloadUri);
-                                    DatabaseReference dbRef = MainActivity.mDataBase.child("Visits");
-                                    Visits visit = new Visits(title, description, timeStamp,imgDownload, location);
+                                    DatabaseReference dbRef = MainActivity.mDataBase.child(isVisit);
+                                    Visits visit = new Visits(title, description, timeStamp, imgDownload, location);
+                                    if(isVisit=="Requests") {
+                                        visit = new Requests(title, description, timeStamp, imgDownload, location, userEmail );
+                                    }
                                     dbRef.child(timeStamp).setValue(visit);
                                 }
                                 pd.dismiss();
@@ -308,8 +322,10 @@ public class RequestsFragment extends Fragment {
 
         } else {
             Visits visit = new Visits(title, description, timeStamp, "noImage", location);
-
-            DatabaseReference dbRef = MainActivity.mDataBase.child("Visits");
+            if(isVisit=="Requests") {
+                visit = new Requests(title, description, timeStamp, imgDownload, location, userEmail );
+            }
+            DatabaseReference dbRef = MainActivity.mDataBase.child(isVisit);
             dbRef.child(timeStamp).setValue(visit).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {

@@ -7,11 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.projeto_cm.R;
 import com.example.projeto_cm.Visits;
+import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -34,6 +38,21 @@ public class myadapter extends FirebaseRecyclerAdapter<Visits,myadapter.myviewho
         holder.title.setText(model.getTitulo());
         Glide.with(holder.img1.getContext()).load(model.getImages().get(0)).into(holder.img1);
 
+        holder.img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity= (AppCompatActivity) v.getContext();
+
+                FragmentTransaction fm = activity.getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.nav_host_fragment, new descfragment(model.getTitulo(),model.getDescricao(), model.getImages())).addToBackStack(null);
+                Fragment frag = activity.getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+                if(frag!=null) {
+                    fm.hide(frag);
+                }
+                fm.commit();
+
+            }
+        });
     }
 
     @NonNull
