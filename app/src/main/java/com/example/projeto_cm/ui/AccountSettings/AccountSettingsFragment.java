@@ -18,16 +18,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.projeto_cm.ChangePasswordFragment;
 import com.example.projeto_cm.ChangeUsernameFragment;
 import com.example.projeto_cm.DeleteAccountFragment;
-import com.example.projeto_cm.MainActivity;
 import com.example.projeto_cm.R;
-import com.example.projeto_cm.User;
 import com.example.projeto_cm.ui.home.HomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
 
 public class AccountSettingsFragment extends Fragment {
 
@@ -53,21 +46,6 @@ public class AccountSettingsFragment extends Fragment {
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
             ft.replace(R.id.nav_host_fragment, new ChangeUsernameFragment());
             ft.commit();
-        });
-
-        MainActivity.mDataBase.child("Users").child(MainActivity.mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (user.getIsGuide()) {
-                    TextView request = (TextView) view.findViewById(R.id.text_aboutUs);
-                    request.setText("Guide Account");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-            }
         });
 
         Button editPassword = view.findViewById(R.id.btn_changePassword);

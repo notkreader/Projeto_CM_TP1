@@ -58,14 +58,6 @@
             app:layout_constraintStart_toStartOf="@+id/registerName"
             app:layout_constraintTop_toBottomOf="@+id/registerName" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="149dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/str_remember_me"
-            app:layout_constraintStart_toStartOf="@+id/textViewCofirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/registerConfirmedPass" />
 
         <TextView
             android:id="@+id/textViewNoAccount"
@@ -108,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
-            android:text="@string/str_confirm_password"
+            android:text="Repeat Password"
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -131,12 +123,12 @@
             android:id="@+id/buttonRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/str_registar"
+            android:layout_marginTop="30dp"
+            android:text="Signup"
             app:backgroundTint="#2C4AD3"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/registerConfirmedPass" />
 
         <Button
             android:id="@+id/registerLogin"

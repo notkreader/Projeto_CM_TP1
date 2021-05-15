@@ -82,12 +82,12 @@
         app:layout_constraintStart_toStartOf="@+id/textViewPassword"
         app:layout_constraintTop_toBottomOf="@+id/textViewPassword" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
+    <TextView
+        android:id="@+id/recoverPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/str_remember_me"
+        android:text="Recover my password"
         app:layout_constraintStart_toStartOf="@+id/loginPassword"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/str_no_account"
+        android:text="Don't have an Account yet?"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="@+id/view"
@@ -106,25 +106,24 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="30dp"
         android:text="@string/str_login"
         app:backgroundTint="#2C4AD3"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/recoverPassword" />
 
     <Button
         android:id="@+id/loginRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
         android:text="@string/str_registar"
         app:backgroundTint="#2C4AD3"
         app:layout_constraintBottom_toBottomOf="@+id/textViewNoAccount"
         app:layout_constraintStart_toEndOf="@+id/textViewNoAccount"
         app:layout_constraintTop_toTopOf="@+id/textViewNoAccount"
         app:layout_constraintVertical_bias="0.375" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

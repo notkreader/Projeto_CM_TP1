@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.projeto_cm.MainActivity;
 import com.example.projeto_cm.R;
 import com.example.projeto_cm.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +28,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private TextView registerUser, login;
     private EditText editTextEmail, editTextName, editTextPassword, editTextConfirmedPassword;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDataBase= FirebaseDatabase.getInstance("https://clickandvisit-59882-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
 
     @Override
@@ -113,11 +113,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
        mAuth.createUserWithEmailAndPassword(email,password)
                .addOnCompleteListener(task -> {
                    if(task.isSuccessful()){
-                       User user= new User(name, email,false);
+                       User user= new User(name, email, false);
+                       System.out.println(mDataBase);
                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                .setDisplayName(name).build();
                        FirebaseAuth.getInstance().getCurrentUser().updateProfile(profileUpdates);
-                       MainActivity.mDataBase.child("Users")
+                       mDataBase.child("Users")
                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                            @Override

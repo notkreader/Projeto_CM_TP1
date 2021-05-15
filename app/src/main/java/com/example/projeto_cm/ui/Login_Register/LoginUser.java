@@ -26,6 +26,7 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
     private EditText editTextEmail, editTextPassword;
     private Button login, register;
     private TextView recoverPassword;
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -43,8 +44,9 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
         login.setOnClickListener(this);
         editTextEmail = (EditText) findViewById(R.id.loginEmail);
         editTextPassword = (EditText) findViewById(R.id.loginPassword);
-        //recoverPassword = (TextView) findViewById(R.id.recoverPassword);
-        //recoverPassword.setOnClickListener(this);
+
+        recoverPassword = (TextView) findViewById(R.id.recoverPassword);
+        recoverPassword.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -60,10 +62,10 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
             case R.id.loginButton:
                 userLogin();
                 break;
-           // case R.id.recoverPassword:
-             //   startActivity(new Intent(this,ResetPassword.class));
-               // finish();
-
+            case R.id.recoverPassword:
+                startActivity(new Intent(this,ResetPassword.class));
+                finish();
+                break;
 
         }
     }
@@ -93,6 +95,7 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     startActivity(new Intent(LoginUser.this, MainActivity.class));
+                    finish();
                 }else{
                     Toast.makeText(LoginUser.this, "Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
                 }

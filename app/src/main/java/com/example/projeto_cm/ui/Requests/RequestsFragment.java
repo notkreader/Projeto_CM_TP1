@@ -239,17 +239,15 @@ public class RequestsFragment extends Fragment {
                     Toast.makeText(view.getContext(), "Introduza uma descrição!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                ArrayList<String> imageList = new ArrayList<>();
                 if (images_rui.isEmpty()) {
-                    ArrayList<String> imageList = new ArrayList<>();
                     imageList.add("noImage");
-                    uploadData(title, description,imageList, location);
                 } else {
-                    ArrayList<String> imageList = new ArrayList<>();
                     for (Uri uri : images_rui) {
                         imageList.add(String.valueOf(uri));
                     }
-                    uploadData(title, description, imageList, location);
                 }
+                uploadData(title, description,imageList, location);
             }
         });
 

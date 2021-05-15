@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity{
             setTheme(R.style.LightTheme);
         }
 
-      try {
+        try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
