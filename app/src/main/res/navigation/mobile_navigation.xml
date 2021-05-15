@@ -45,9 +45,4 @@
         android:name="com.example.projeto_cm.ui.Map.MapFragment"
         tools:layout="@layout/fragment_map" />
 
-    <fragment
-        android:id="@+id/nav_requests"
-        android:name="com.example.projeto_cm.ui.Requests.RequestsFragment"
-        tools:layout="@layout/fragment_requests" />
-
 </navigation>

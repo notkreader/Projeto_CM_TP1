@@ -30,6 +30,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projeto_cm.MainActivity;
@@ -38,6 +40,7 @@ import com.example.projeto_cm.User;
 import com.example.projeto_cm.Visits;
 import com.example.projeto_cm.ui.Map.MapFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
+import com.example.projeto_cm.ui.home.recfragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -72,7 +75,6 @@ public class RequestsFragment extends Fragment {
 
     private static final int RECORD_AUDIO_REQUEST_CODE = 1;
 
-    //private View view;
     String[] cameraPermissions;
     String[] storagePermissions;
 
@@ -86,6 +88,8 @@ public class RequestsFragment extends Fragment {
         pd = new ProgressDialog(view.getContext());
         images_rui = new ArrayList<>();
         countImages=0;
+
+
 
         MainActivity.mDataBase.child("Users").child(MainActivity.mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -239,17 +243,22 @@ public class RequestsFragment extends Fragment {
                     Toast.makeText(view.getContext(), "Introduza uma descrição!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                ArrayList<String> imageList = new ArrayList<>();
+
                 if (images_rui.isEmpty()) {
+                    ArrayList<String> imageList = new ArrayList<>();
                     imageList.add("noImage");
+                    uploadData(title, description,imageList, location);
                 } else {
+                    ArrayList<String> imageList = new ArrayList<>();
                     for (Uri uri : images_rui) {
                         imageList.add(String.valueOf(uri));
                     }
+                    uploadData(title, description,imageList, location);
                 }
-                uploadData(title, description,imageList, location);
+
             }
         });
+
 
 
         return view;
@@ -280,10 +289,11 @@ public class RequestsFragment extends Fragment {
                                     dbRef.child(timeStamp).setValue(visit);
                                 }
                                 pd.dismiss();
-                                Toast.makeText(getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
                                 titleET.setText("");
                                 descriptionET.setText("");
                                 images_rui = null;
+                                locationET.setText("");
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -293,7 +303,7 @@ public class RequestsFragment extends Fragment {
                                 Toast.makeText(getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-                countImages++;
+                countImages--;
             }
 
         } else {
@@ -309,6 +319,7 @@ public class RequestsFragment extends Fragment {
                     titleET.setText("");
                     descriptionET.setText("");
                     images_rui = null;
+                    locationET.setText("");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -318,6 +329,9 @@ public class RequestsFragment extends Fragment {
                 }
             });
         }
+
+        ((MainActivity)getActivity()).setVisitsOff();
+
     }
 
     private void showImagePickDialog() {
@@ -360,6 +374,9 @@ public class RequestsFragment extends Fragment {
         cv.put(MediaStore.Images.Media.DESCRIPTION, "Temp Descr");
         Uri img = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
         images_rui.add(img);
+        countImages++;
+        TextView tv = (TextView) getActivity().findViewById(R.id.textView4);
+        tv.setText(countImages + " images uploaded");
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, img);
@@ -442,6 +459,9 @@ public class RequestsFragment extends Fragment {
                     images_rui= new ArrayList<>();
                 }
                 images_rui.add(data.getData());
+                countImages++;
+                TextView tv = (TextView) getActivity().findViewById(R.id.textView4);
+                tv.setText(countImages + " images uploaded");
             } else if (requestCode == IMAGE_PICK_CAMERA_CODE) {
             }
         }

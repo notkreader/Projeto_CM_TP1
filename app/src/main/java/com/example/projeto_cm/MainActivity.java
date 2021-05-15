@@ -5,11 +5,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
+import com.example.projeto_cm.ui.AboutUs.AboutUsFragment;
+import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
+import com.example.projeto_cm.ui.Categories.CategoriesFragment;
+import com.example.projeto_cm.ui.Favorites.FavoritesFragment;
 import com.example.projeto_cm.ui.Login_Register.LoginUser;
 import com.example.projeto_cm.ui.Messages.MessagesFragment;
 import com.example.projeto_cm.ui.Requests.RequestsFragment;
+import com.example.projeto_cm.ui.WishList.WishListFragment;
+import com.example.projeto_cm.ui.home.HomeFragment;
+import com.example.projeto_cm.ui.home.recfragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -79,6 +89,10 @@ public class MainActivity extends AppCompatActivity{
         fab.setOnClickListener(view -> {
             FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
             fm.replace(R.id.nav_host_fragment, new RequestsFragment());
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+            if(frag!=null) {
+                fm.remove(frag);
+            }
             fm.commit();
         });
 
@@ -103,6 +117,8 @@ public class MainActivity extends AppCompatActivity{
                 .setDrawerLayout(drawer)
                 .build();
 
+        setMenuButtons(navigationView, drawer);
+
         if(fbUser!=null) {
             mDataBase.child("Users").child(fbUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -124,6 +140,8 @@ public class MainActivity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
 
     }
 
@@ -156,6 +174,10 @@ public class MainActivity extends AppCompatActivity{
         switch (item.getItemId()) {
             case R.id.app_bar_messages:
                 fm.replace(R.id.nav_host_fragment, new MessagesFragment());
+                Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+                if(frag != null) {
+                    fm.remove(frag);
+                }
                 fm.commit();
                 return true;
             default:
@@ -168,6 +190,78 @@ public class MainActivity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void setMenuButtons(NavigationView navigationView, DrawerLayout drawer){
+        navigationView.getMenu().findItem(R.id.nav_categories).setOnMenuItemClickListener(item -> {
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+            fm.replace(R.id.nav_host_fragment, new CategoriesFragment());
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+            if(frag!=null) {
+                fm.hide(frag);
+            }
+            fm.commit();
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
+        navigationView.getMenu().findItem(R.id.nav_aboutus).setOnMenuItemClickListener(item -> {
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+            fm.replace(R.id.nav_host_fragment, new AboutUsFragment());
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+            if(frag!=null) {
+                fm.hide(frag);
+            }
+            fm.commit();
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
+        navigationView.getMenu().findItem(R.id.nav_accountSettings).setOnMenuItemClickListener(item -> {
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+            fm.replace(R.id.nav_host_fragment, new AccountSettingsFragment());
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+            if(frag!=null) {
+                fm.hide(frag);
+            }
+            fm.commit();
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
+        navigationView.getMenu().findItem(R.id.nav_favorites).setOnMenuItemClickListener(item -> {
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+            fm.replace(R.id.nav_host_fragment, new FavoritesFragment());
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+            if(frag!=null) {
+                fm.hide(frag);
+            }
+            fm.commit();
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
+        navigationView.getMenu().findItem(R.id.nav_wishList).setOnMenuItemClickListener(item -> {
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+            fm.replace(R.id.nav_host_fragment, new WishListFragment());
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+            if(frag!=null) {
+                fm.hide(frag);
+            }
+            fm.commit();
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
+    }
+
+    public void setVisitsOff(){
+        FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.nav_host_fragment, new HomeFragment());
+        Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
+        if(frag!=null) {
+            fm.hide(frag);
+        }
+        fm.commit();
     }
 
 }
