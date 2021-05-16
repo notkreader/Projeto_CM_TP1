@@ -7,6 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Menu Drawer -->
     <string name="menu_home">Home</string>
     <string name="menu_categories">Categories</string>
     <string name="menu_favorites">Favorites</string>
@@ -14,27 +15,91 @@
     <string name="menu_aboutus">About Us</string>
     <string name="menu_accountsettings">Account Settings</string>
     <string name="menu_logOut">Log Out</string>
+
     <string name="messages">Messages</string>
     <string name="applogo">AppLogo</string>
     <string name="tiago_farinha_180221011_estudantes_ips_pt_noami_costa_180221129_estudantes_ips_pt_jo_o_cabete_190221046_estudantes_ips_pt_duarte_pardal_190221022_estudantes_ips_pt">Tiago Farinha: 180221011@estudantes.ips.pt Noami Costa: 180221129@estudantes.ips.pt João Cabete: 190221046@estudantes.ips.pt Duarte Pardal: 190221022@estudantes.ips.pt</string>
     <string name="the_click_visit_application_takes_the_user_anywhere_in_the_world_through_a_simple_click_visit_the_monument_the_palace_or_the_statue_that_i_always_wanted_to_see_up_close_any_time_or_if_you_want_to_know_more_about_something_that_can_t_find_it_place_an_order_personalized_and_you_will_receive_a_response_within_24_hours_by_part_of_the_guides_any_other_questions_you_may_have_there_is_no_way_to_contact_us_through_of_email_addresses_at_the_bottom_of_this_page_thanks_for_the_preference_and_good_visits"><![CDATA[The Click & Visit application takes the user anywhere in the world through a simple click. Visit the monument, the palace or the statue that I always wanted to see up close any time or if you want to know more about something that can\'t find it, place an order personalized and you will receive a response within 24 hours by part of the guides. Any other questions you may have, there is no way to contact us through of email addresses at the bottom of this page. Thanks for the preference and good visits!]]></string>
+
+
+    <!-- Login & Signup -->
+    <string name="str_icon">Icon</string>
+    <string name="str_email_address">Email Address</string>
+    <string name="str_default">Default input</string>
+    <string name="str_password">Password</string>
+    <string name="str_login">Login</string>
+    <string name="str_no_account">Don\'t have an Account yet?</string>
+    <string name="str_already_registered">Already have an Account?</string>
+    <string name="str_registar">Signup</string>
+    <string name="str_name">Name</string>
+    <string name="repeatPassword">Repeat Password</string>
+    <string name="recoverPassword">Recover my password</string>
+
+    <!-- Reset Password -->
+    <string name="reset_password">reset password</string>
+    <string name="enter_your_email">Enter your email</string>
+
+
+    <!-- About Us -->
+    <string name="about_us">About Us</string>
+    <string name="contacts">Contacts</string>
+
+
+    <!-- Account Settings -->
     <string name="account">Account</string>
     <string name="username_text">Username:</string>
     <string name="dark_mode">Dark Mode:</string>
     <string name="change_password">Change Password</string>
     <string name="delete_account">Delete Account</string>
+    <string name="password">Password:</string>
+    <string name="brightness">Brightness:</string>
 
-    <string name="str_icon">Icon</string>
-    <string name="str_email_address">Email Address</string>
-    <string name="str_default">Default input</string>
-    <string name="str_password">Password</string>
-    <string name="str_remember_me">Remember me</string>
-    <string name="str_login">Login</string>
-    <string name="str_no_account">Não possui conta?</string>
-    <string name="str_already_registered">Já possui conta?</string>
-    <string name="str_registar">Registar</string>
-    <string name="str_name">Nome</string>
-    <string name="str_confirm_password">Confirmar Password</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Account Settings - Change Password and Change Username -->
+    <string name="old_password">Old Password:</string>
+    <string name="new_password">New Password:</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_username">New Username:</string>
+
+
+    <!-- Delete Account Message -->
+    <string name="are_you_sure">Are you sure&#160;</string>
+    <string name="you_want_to_delete">you want to delete&#160;</string>
+    <string name="your_account">your account?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+
+
+    <!-- Categories -->
+    <string name="categories">Categories</string>
+    <string name="see_more">See Less</string>
+    <string name="leisure_tourism">Leisure Tourism</string>
+    <string name="cultural_tourism">Cultural Tourism</string>
+
+
+    <string name="wow_so_empty">Wow so empty</string>
+
+    <!-- Favorites -->
+    <string name="favorites">Favorites</string>
+
+    <!-- Home -->
+    <string name="trending">Trending</string>
+
+    <!-- Google Maps -->
+    <string name="select">Select</string>
+
+    <!-- Messages -->
+    <string name="messages1">Messages:</string>
+    <string name="request">Request</string>
+    <string name="location">Location</string>
+    <string name="description">Description</string>
+    <string name="upload">Upload</string>
+    <string name="no_images_uploaded">0 images uploaded</string>
+    <string name="send">Send</string>
+    <string name="title">Title</string>
+    <string name="return_to_homepage">Return to Homepage?</string>
+    <string name="wishlist">WishList</string>
+
+
 </resources>

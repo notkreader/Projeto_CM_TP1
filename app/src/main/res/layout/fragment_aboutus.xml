@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="About Us"
+        android:text="@string/about_us"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="34sp"
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Contacts"
+        android:text="@string/contacts"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -96,7 +96,7 @@
         android:rotation="180"
         android:text=">"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

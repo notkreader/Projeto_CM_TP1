@@ -21,18 +21,18 @@
 
             <TextView
                 android:gravity="end"
-                android:text="Are you sure "
-                android:textSize="16dp"
+                android:text="@string/are_you_sure"
+                android:textSize="16sp"
                 android:textColor="@color/white"/>
             <TextView
                 android:gravity="end"
-                android:text="you want to delete "
-                android:textSize="16dp"
+                android:text="@string/you_want_to_delete"
+                android:textSize="16sp"
                 android:textColor="@color/white"/>
             <TextView
                 android:gravity="end"
-                android:text="your account?"
-                android:textSize="16dp"
+                android:text="@string/your_account"
+                android:textSize="16sp"
                 android:layout_marginRight="20dp"
                 android:textColor="@color/white"/>
 
@@ -47,8 +47,8 @@
                 android:id="@+id/btn_cancelDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No"
-                android:textSize="20dp"
+                android:text="@string/no"
+                android:textSize="20sp"
                 android:layout_marginRight="20dp"
                 android:backgroundTint="#FF0000"
                 android:textAllCaps="false"
@@ -60,8 +60,8 @@
                 android:id="@+id/btn_confirmDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yes"
-                android:textSize="20dp"
+                android:text="@string/yes"
+                android:textSize="20sp"
                 android:backgroundTint="#2D73EB"
                 android:textAllCaps="false"
                 android:gravity="center_horizontal"
