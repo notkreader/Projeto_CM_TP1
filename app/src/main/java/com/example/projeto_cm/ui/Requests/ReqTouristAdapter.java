@@ -20,12 +20,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class reqTouristAdapter extends RecyclerView.Adapter<reqTouristAdapter.MyViewHolder> {
+public class ReqTouristAdapter extends RecyclerView.Adapter<ReqTouristAdapter.MyViewHolder> {
 
     ArrayList<Requests> mList;
     Context context;
 
-    public reqTouristAdapter(Context context, ArrayList<Requests> list  ){
+    public ReqTouristAdapter(Context context, ArrayList<Requests> list  ){
         this.mList=list;
         this.context=context;
 

@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 
-public class recMessageTourist extends Fragment {
+public class RecMessageTourist extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -32,15 +32,15 @@ public class recMessageTourist extends Fragment {
     private String mParam2;
 
     private RecyclerView recyclerView;
-    private reqTouristAdapter adapter;
+    private ReqTouristAdapter adapter;
     private ArrayList<Requests> mList;
 
-    public recMessageTourist() {
+    public RecMessageTourist() {
         // Required empty public constructor
     }
 
-    public static recMessageTourist newInstance(String param1, String param2) {
-        recMessageTourist fragment = new recMessageTourist();
+    public static RecMessageTourist newInstance(String param1, String param2) {
+        RecMessageTourist fragment = new RecMessageTourist();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,7 +63,7 @@ public class recMessageTourist extends Fragment {
         View view= inflater.inflate(R.layout.fragment_rec_message_tourist, container, false);
 
         mList= new ArrayList<>();
-        adapter= new reqTouristAdapter(getContext(), mList);
+        adapter= new ReqTouristAdapter(getContext(), mList);
         recyclerView = view.findViewById(R.id.rec_message_tourist);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

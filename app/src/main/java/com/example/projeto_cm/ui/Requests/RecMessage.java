@@ -16,7 +16,7 @@ import com.example.projeto_cm.Requests;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 
-public class recMessage extends Fragment {
+public class RecMessage extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -25,9 +25,9 @@ public class recMessage extends Fragment {
     private String mParam2;
 
     RecyclerView recview;
-    requestMsgAdapter adapter;
+    RequestMsgAdapter adapter;
 
-    public recMessage() {
+    public RecMessage() {
         // Required empty public constructor
     }
 
@@ -40,8 +40,8 @@ public class recMessage extends Fragment {
      * @return A new instance of fragment recMessage.
      */
     // TODO: Rename and change types and number of parameters
-    public static recMessage newInstance(String param1, String param2) {
-        recMessage fragment = new recMessage();
+    public static RecMessage newInstance(String param1, String param2) {
+        RecMessage fragment = new RecMessage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,7 +72,7 @@ public class recMessage extends Fragment {
             FirebaseRecyclerOptions<Requests> options = new FirebaseRecyclerOptions.Builder<Requests>()
                     .setQuery(MainActivity.mDataBase.child("Requests"), Requests.class)
                     .build();
-            adapter= new requestMsgAdapter(options);
+            adapter= new RequestMsgAdapter(options);
             recview.setAdapter(adapter);
         }
         return view;

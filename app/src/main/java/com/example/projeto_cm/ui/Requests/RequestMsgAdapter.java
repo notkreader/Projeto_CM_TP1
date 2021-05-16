@@ -3,7 +3,6 @@ package com.example.projeto_cm.ui.Requests;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,15 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projeto_cm.R;
 import com.example.projeto_cm.Requests;
-import com.example.projeto_cm.Visits;
 import com.example.projeto_cm.ui.home.DescFragment;
-import com.example.projeto_cm.ui.home.MyAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
-public class requestMsgAdapter extends FirebaseRecyclerAdapter<Requests,requestMsgAdapter.myviewholder > {
+public class RequestMsgAdapter extends FirebaseRecyclerAdapter<Requests, RequestMsgAdapter.myviewholder > {
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -30,7 +27,7 @@ public class requestMsgAdapter extends FirebaseRecyclerAdapter<Requests,requestM
      *
      * @param options
      */
-    public requestMsgAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Requests> options) {
+    public RequestMsgAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Requests> options) {
         super(options);
     }
 

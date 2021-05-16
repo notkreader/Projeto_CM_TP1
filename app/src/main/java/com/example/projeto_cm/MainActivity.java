@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.view.View;
-import android.widget.TextView;
 
 import com.example.projeto_cm.ui.AboutUs.AboutUsFragment;
 import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
@@ -15,10 +13,8 @@ import com.example.projeto_cm.ui.Favorites.FavoritesFragment;
 import com.example.projeto_cm.ui.Login_Register.LoginUser;
 import com.example.projeto_cm.ui.Messages.MessagesFragment;
 import com.example.projeto_cm.ui.Requests.RequestsFragment;
-import com.example.projeto_cm.ui.Requests.reqTouristAdapter;
 import com.example.projeto_cm.ui.WishList.WishListFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
-import com.example.projeto_cm.ui.home.RecFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,12 +37,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
