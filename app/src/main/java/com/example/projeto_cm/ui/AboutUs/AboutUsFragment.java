@@ -18,8 +18,8 @@ public class AboutUsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_aboutus, container, false);
 
-        Button btn1 = (Button) view.findViewById(R.id.back_button);
-        btn1.setOnClickListener(new View.OnClickListener(){
+        Button backBtn = (Button) view.findViewById(R.id.back_button);
+        backBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();

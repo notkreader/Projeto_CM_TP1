@@ -40,9 +40,9 @@ public class AccountSettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_accountsettings, container, false);
 
-        Button btn1 = (Button) view.findViewById(R.id.back_button);
+        Button backBtn = (Button) view.findViewById(R.id.back_button);
 
-        btn1.setOnClickListener(v -> {
+        backBtn.setOnClickListener(v -> {
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
             ft.replace(R.id.nav_host_fragment, new HomeFragment());
             ft.commit();

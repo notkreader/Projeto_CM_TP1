@@ -31,13 +31,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MapFragment extends Fragment implements OnMapReadyCallback {
-    GoogleMap map;
+    private GoogleMap map;
     private FusedLocationProviderClient flpc;
     private LatLng markerLatlng;
     private boolean locationPermissionsGranted;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final String TAG = "Map Activity";
     private static final float DEFAULT_ZOOM = 15f;
@@ -48,10 +50,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         checkPermissions();
 
         Button selectBtn = (Button) view.findViewById(R.id.select_location_button);
-        selectBtn.setOnClickListener(new View.OnClickListener(){
+        selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(markerLatlng == null)
+            public void onClick(View v) {
+                if (markerLatlng == null)
                     Toast.makeText(getContext(), "Nenhum local selecionado", Toast.LENGTH_LONG).show();
                 else {
                     Bundle bundleLatlng = new Bundle();
@@ -88,25 +90,26 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private void getCurrentLocation() {
         flpc = LocationServices.getFusedLocationProviderClient(getContext());
-        try{
-            if(locationPermissionsGranted) {
+        try {
+            if (locationPermissionsGranted) {
                 Task location = flpc.getLastLocation();
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        if(task.isSuccessful()) {
+                        if (task.isSuccessful()) {
                             Log.d(TAG, "Found location");
                             Location currentLocation = (Location) task.getResult();
-                            //moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
-                        }
-                        else {
+                            if(currentLocation != null) {
+                                moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                            }
+                        } else {
                             Log.d(TAG, "Cannot find current location");
                             Toast.makeText(getContext(), "Cannot find current location", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
             }
-        }catch (SecurityException e) {
+        } catch (SecurityException e) {
             Log.e(TAG, "Security Exception: " + e.getMessage());
         }
     }
@@ -133,29 +136,30 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void checkPermissions() {
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-        if(ContextCompat.checkSelfPermission(getContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            if(ContextCompat.checkSelfPermission(getContext(), COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        String[] permissions = {
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION};
+
+        if (ContextCompat.checkSelfPermission(getContext().getApplicationContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(getContext().getApplicationContext(), COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 locationPermissionsGranted = true;
                 SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
                 mapFragment.getMapAsync(this);
-            }
 
-            else
+            } else
                 ActivityCompat.requestPermissions(getActivity(), permissions, LOCATION_PERMISSION_REQUEST_CODE);
-        }
-        else
+        } else
             ActivityCompat.requestPermissions(getActivity(), permissions, LOCATION_PERMISSION_REQUEST_CODE);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         locationPermissionsGranted = false;
-        switch(requestCode) {
+        switch (requestCode) {
             case LOCATION_PERMISSION_REQUEST_CODE: {
                 if (grantResults.length > 0) {
-                    for(int i=0 ; i<grantResults.length; i++) {
-                        if(grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    for (int i = 0; i < grantResults.length; i++) {
+                        if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                             locationPermissionsGranted = false;
                             return;
                         }
