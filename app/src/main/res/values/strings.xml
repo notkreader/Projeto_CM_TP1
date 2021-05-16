@@ -73,7 +73,7 @@
 
     <!-- Categories -->
     <string name="categories">Categories</string>
-    <string name="see_more">See Less</string>
+    <string name="see_more">See More</string>
     <string name="leisure_tourism">Leisure Tourism</string>
     <string name="cultural_tourism">Cultural Tourism</string>
 
@@ -91,6 +91,8 @@
 
     <!-- Messages -->
     <string name="messages1">Messages:</string>
+
+    <!-- Special Requests -->
     <string name="request">Request</string>
     <string name="location">Location</string>
     <string name="description">Description</string>
@@ -98,7 +100,11 @@
     <string name="no_images_uploaded">0 images uploaded</string>
     <string name="send">Send</string>
     <string name="title">Title</string>
+
+    <!-- Return to homepage message -->
     <string name="return_to_homepage">Return to Homepage?</string>
+
+    <!-- Wishlist -->
     <string name="wishlist">WishList</string>
 
 

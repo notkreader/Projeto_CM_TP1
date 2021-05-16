@@ -210,11 +210,11 @@ public class RequestsFragment extends Fragment {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_UP:
                         speechRecognizer.stopListening();
-                        voiceET.setHint("Descrição");
+                        voiceET.setHint("Description");
                         break;
                     case MotionEvent.ACTION_DOWN:
                         voiceET.setText("");
-                        voiceET.setHint("A ouvir...");
+                        voiceET.setHint("Listening...");
                         speechRecognizer.startListening(speechRecognizerIntent);
                         break;
                 }
@@ -245,11 +245,11 @@ public class RequestsFragment extends Fragment {
 
 
                 if (TextUtils.isEmpty(title)) {
-                    Toast.makeText(view.getContext(), "Titulo necessário!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Missing title!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(description)) {
-                    Toast.makeText(view.getContext(), "Introduza uma descrição!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Missing Description!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -270,7 +270,7 @@ public class RequestsFragment extends Fragment {
     }
 
     private void uploadData(String title, String description, ArrayList<String> uriList, String location) {
-        pd.setMessage("A enviar...");
+        pd.setMessage("Sending...");
         pd.show();
 
         String timeStamp = String.valueOf(System.currentTimeMillis());
@@ -345,10 +345,10 @@ public class RequestsFragment extends Fragment {
     }
 
     private void showImagePickDialog() {
-        String[] options = {"Camera", "Galeria"};
+        String[] options = {"Camera", "Galery"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
-        builder.setTitle("Escolher imagens de:");
+        builder.setTitle("Choose images from:");
 
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
@@ -433,7 +433,7 @@ public class RequestsFragment extends Fragment {
                     if (cameraAccepted && storageAccepted) {
                         pickFromCamera();
                     } else {
-                        Toast.makeText(this.getContext(), "Permissões de camera e armazenamento necessárias...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), "Camera & Storage permissions needed...", Toast.LENGTH_SHORT).show();
                     }
                 } else {
 
@@ -446,7 +446,7 @@ public class RequestsFragment extends Fragment {
                     if (storageAccepted) {
                         pickFromGallery();
                     } else {
-                        Toast.makeText(this.getContext(), "Permissão de armazenamento necessária...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), " Storage permission needed...", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                 }
@@ -454,7 +454,7 @@ public class RequestsFragment extends Fragment {
             break;
             case RECORD_AUDIO_REQUEST_CODE:
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this.getContext(), "Permissão garantida", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.getContext(), "Permission granteds", Toast.LENGTH_LONG).show();
                 }
         }
 
