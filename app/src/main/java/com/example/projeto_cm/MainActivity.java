@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.view.View;
-import android.widget.TextView;
 
 import com.example.projeto_cm.ui.AboutUs.AboutUsFragment;
 import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
@@ -17,7 +15,6 @@ import com.example.projeto_cm.ui.Messages.MessagesFragment;
 import com.example.projeto_cm.ui.Requests.RequestsFragment;
 import com.example.projeto_cm.ui.WishList.WishListFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
-import com.example.projeto_cm.ui.home.recfragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;

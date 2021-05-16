@@ -10,16 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.projeto_cm.MainActivity;
 import com.example.projeto_cm.R;
-import com.example.projeto_cm.ui.Map.MapFragment;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,7 +19,7 @@ public class HomeFragment extends Fragment {
         text.setText("");
 
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mid_frag ,new recfragment());
+        ft.replace(R.id.mid_frag ,new RecFragment());
         ft.commit();
 
 

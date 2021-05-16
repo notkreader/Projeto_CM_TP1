@@ -18,7 +18,7 @@ import com.example.projeto_cm.R;
 import java.util.ArrayList;
 
 
-public class descfragment extends Fragment {
+public class DescFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -27,18 +27,18 @@ public class descfragment extends Fragment {
     private String mParam2;
     String titulo,descricao;
     ArrayList<String> imgs;
-    public descfragment() {
+    public DescFragment() {
 
     }
 
-    public descfragment(String titulo, String descricao, ArrayList<String> imgs) {
+    public DescFragment(String titulo, String descricao, ArrayList<String> imgs) {
         this.titulo=titulo;
         this.descricao=descricao;
         this.imgs=imgs;
     }
 
-    public static descfragment newInstance(String param1, String param2) {
-        descfragment fragment = new descfragment();
+    public static DescFragment newInstance(String param1, String param2) {
+        DescFragment fragment = new DescFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

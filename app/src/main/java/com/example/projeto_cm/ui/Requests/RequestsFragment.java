@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -30,8 +29,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projeto_cm.MainActivity;
@@ -41,7 +38,6 @@ import com.example.projeto_cm.User;
 import com.example.projeto_cm.Visits;
 import com.example.projeto_cm.ui.Map.MapFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
-import com.example.projeto_cm.ui.home.recfragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -103,8 +99,15 @@ public class RequestsFragment extends Fragment {
                 User user = snapshot.getValue(User.class);
                 if (user.getIsGuide()) {
                     TextView request = (TextView) view.findViewById(R.id.text_aboutUs);
-                    request.setText("Guide Visit");
-                    sendBtn.setText("Publish");
+                    if(Locale.getDefault().getLanguage().equals("es")){
+                        request.setText("Visita de Guía");
+                    }else if(Locale.getDefault().getLanguage().equals("pt")){
+                        request.setText("Visita do Guia");
+                    }else if(Locale.getDefault().getLanguage().equals("fr")){
+                        request.setText("Visite Guide");
+                    }else{
+                        request.setText("Guide Visit");
+                    }
                     isVisit = "Visits";
                     filePathAndName= "Visits/" + "visit_";
 

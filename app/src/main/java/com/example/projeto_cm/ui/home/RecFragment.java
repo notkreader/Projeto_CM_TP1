@@ -16,7 +16,7 @@ import com.example.projeto_cm.Visits;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 
-public class recfragment extends Fragment {
+public class RecFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -25,14 +25,14 @@ public class recfragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recview;
-    myadapter adapter;
+    MyAdapter adapter;
 
-    public recfragment() {
+    public RecFragment() {
         // Required empty public constructor
     }
 
-    public static recfragment newInstance(String param1, String param2) {
-        recfragment fragment = new recfragment();
+    public static RecFragment newInstance(String param1, String param2) {
+        RecFragment fragment = new RecFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,7 +62,7 @@ public class recfragment extends Fragment {
                 .setQuery(MainActivity.mDataBase.child("Visits"), Visits.class)
                 .build();
 
-        adapter= new myadapter(options);
+        adapter= new MyAdapter(options);
         recview.setAdapter(adapter);
 
         return view;

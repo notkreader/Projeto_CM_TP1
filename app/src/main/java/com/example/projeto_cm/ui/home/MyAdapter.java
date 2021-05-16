@@ -15,13 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.projeto_cm.R;
 import com.example.projeto_cm.Visits;
-import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
-public class myadapter extends FirebaseRecyclerAdapter<Visits,myadapter.myviewholder> {
+public class MyAdapter extends FirebaseRecyclerAdapter<Visits, MyAdapter.myviewholder> {
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -29,7 +28,7 @@ public class myadapter extends FirebaseRecyclerAdapter<Visits,myadapter.myviewho
      *
      * @param options
      */
-    public myadapter(@NonNull @NotNull FirebaseRecyclerOptions<Visits> options) {
+    public MyAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Visits> options) {
         super(options);
     }
 
@@ -44,7 +43,7 @@ public class myadapter extends FirebaseRecyclerAdapter<Visits,myadapter.myviewho
                 AppCompatActivity activity= (AppCompatActivity) v.getContext();
 
                 FragmentTransaction fm = activity.getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.nav_host_fragment, new descfragment(model.getTitulo(),model.getDescricao(), model.getImages())).addToBackStack(null);
+                fm.replace(R.id.nav_host_fragment, new DescFragment(model.getTitulo(),model.getDescricao(), model.getImages())).addToBackStack(null);
                 Fragment frag = activity.getSupportFragmentManager().findFragmentById(R.id.mid_frag);
                 if(frag!=null) {
                     fm.hide(frag);
