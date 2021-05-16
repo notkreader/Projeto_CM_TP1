@@ -1,14 +1,23 @@
 package com.example.projeto_cm.ui.AccountSettings;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -23,6 +32,10 @@ import com.example.projeto_cm.ui.home.HomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AccountSettingsFragment extends Fragment {
+    private SeekBar seekBar;
+    private int brightness;
+    private ContentResolver contentResolver;
+    private Window window;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_accountsettings, container, false);
@@ -87,6 +100,54 @@ public class AccountSettingsFragment extends Fragment {
             }
             editor.apply();
         });
+
+
+        seekBar = view.findViewById(R.id.seekbar);
+        contentResolver = getActivity().getContentResolver();
+        window = getActivity().getWindow();
+
+        seekBar.setMax(255);
+        seekBar.setKeyProgressIncrement(1);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(Settings.System.canWrite(getContext())) {
+
+            }
+            else {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                intent.setData(Uri.parse("package:" + getActivity().getApplication().getPackageName()));
+                startActivity(intent);
+            }
+        }
+
+        try {
+            brightness = Settings.System.getInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS);
+            seekBar.setProgress(brightness);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                brightness = progress;
+                Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
+                WindowManager.LayoutParams layoutParams = window.getAttributes();
+                layoutParams.screenBrightness = brightness / (float) 300;
+                window.setAttributes(layoutParams);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         return view;
     }
