@@ -1,2 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Projeto_CM</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Menu Drawer -->
+    <string name="menu_home">Loger</string>
+    <string name="menu_categories">Catégories</string>
+    <string name="menu_favorites">Favoris</string>
+    <string name="menu_wishlist">Liste de souhaits</string>
+    <string name="menu_aboutus">À propos de nous</string>
+    <string name="menu_accountsettings">Compte</string>
+    <string name="menu_logOut">Se déconnecter</string>
+
+    <string name="messages">Des postes</string>
+    <string name="applogo">AppLogo</string>
+    <string name="tiago_farinha_180221011_estudantes_ips_pt_noami_costa_180221129_estudantes_ips_pt_jo_o_cabete_190221046_estudantes_ips_pt_duarte_pardal_190221022_estudantes_ips_pt">Tiago Farinha: 180221011@estudantes.ips.pt Noami Costa: 180221129@estudantes.ips.pt João Cabete: 190221046@estudantes.ips.pt Duarte Pardal: 190221022@estudantes.ips.pt</string>
+    <string name="the_click_visit_application_takes_the_user_anywhere_in_the_world_through_a_simple_click_visit_the_monument_the_palace_or_the_statue_that_i_always_wanted_to_see_up_close_any_time_or_if_you_want_to_know_more_about_something_that_can_t_find_it_place_an_order_personalized_and_you_will_receive_a_response_within_24_hours_by_part_of_the_guides_any_other_questions_you_may_have_there_is_no_way_to_contact_us_through_of_email_addresses_at_the_bottom_of_this_page_thanks_for_the_preference_and_good_visits"><![CDATA[The Click & Visit application takes the user anywhere in the world through a simple click. Visit the monument, the palace or the statue that I always wanted to see up close any time or if you want to know more about something that can\'t find it, place an order personalized and you will receive a response within 24 hours by part of the guides. Any other questions you may have, there is no way to contact us through of email addresses at the bottom of this page. Thanks for the preference and good visits!]]></string>
+
+
+    <!-- Login & Signup -->
+    <string name="str_icon">Icon</string>
+    <string name="str_email_address">E-mail</string>
+    <string name="str_default">Default input</string>
+    <string name="str_password">Le mot de passe</string>
+    <string name="str_login">Connexion</string>
+    <string name="str_no_account">Vous n\'avez pas encore de compte?</string>
+    <string name="str_already_registered">Vous avez déjà un compte?</string>
+    <string name="str_registar">S\'inscrire</string>
+    <string name="str_name">Nom</string>
+    <string name="repeatPassword">Répéter le mot de passe</string>
+    <string name="recoverPassword">Récupérer mon mot de passe</string>
+
+    <!-- Reset Password -->
+    <string name="reset_password">Réinitialiser le mot de passe</string>
+    <string name="enter_your_email">Entrer votre Email</string>
+
+
+    <!-- About Us -->
+    <string name="about_us">À propos de nous</string>
+    <string name="contacts">Contacts</string>
+
+
+    <!-- Account Settings -->
+    <string name="account">Compte</string>
+    <string name="username_text">Nom d\'utilisateur:</string>
+    <string name="dark_mode">Dark Mode:</string>
+    <string name="change_password">Changer le mot de passe</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="password">Le mot de passe:</string>
+    <string name="brightness">Briller:</string>
+
+
+    <!-- Account Settings - Change Password and Change Username -->
+    <string name="old_password">Ancien mot de passe:</string>
+    <string name="new_password">Nouveau mot de passe:</string>
+    <string name="save">Sauvegarder</string>
+    <string name="cancel">Annuler</string>
+    <string name="new_username">Nouveau nom:</string>
+
+
+    <!-- Delete Account Message -->
+    <string name="are_you_sure">Voulez-vous &#160;</string>
+    <string name="you_want_to_delete">vraiment supprimer&#160;</string>
+    <string name="your_account">votre compte?</string>
+    <string name="no">Non</string>
+    <string name="yes">Oui</string>
+
+
+    <!-- Categories -->
+    <string name="categories">Catégories</string>
+    <string name="see_more">Voir plus</string>
+    <string name="leisure_tourism">Tourisme de Loisir</string>
+    <string name="cultural_tourism">Turismo Culturel</string>
+
+
+    <string name="wow_so_empty">Rien à montrer</string>
+
+    <!-- Favorites -->
+    <string name="favorites">Signets</string>
+
+    <!-- Home -->
+    <string name="trending">Tendances</string>
+
+    <!-- Google Maps -->
+    <string name="select">Sélectionner</string>
+
+    <!-- Messages -->
+    <string name="messages1">Messages:</string>
+
+    <!-- Special Requests -->
+    <string name="request">Ordre</string>
+    <string name="location">Emplacement</string>
+    <string name="description">La description</string>
+    <string name="upload">Télécharger</string>
+    <string name="no_images_uploaded">0 images téléchargées</string>
+    <string name="send">Envoyer</string>
+    <string name="title">Titre</string>
+
+    <!-- Return to homepage message -->
+    <string name="return_to_homepage">Retour à la page d\'accueil?</string>
+
+    <!-- Wishlist -->
+    <string name="wishlist">Liste de Souhaits</string>
+</resources>
