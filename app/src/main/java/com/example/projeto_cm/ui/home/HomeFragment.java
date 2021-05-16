@@ -22,32 +22,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         TextView text= view.findViewById(R.id.text_Empty);
+        text.setText("");
 
-        MainActivity.mDataBase.child("Visits").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if (getActivity() == null) {
-                    return;
-                }
-                if(snapshot.exists()){
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    text.setText("");
-                    ft.replace(R.id.mid_frag ,new recfragment());
-                    ft.commit();
-                }else{
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mid_frag ,new recfragment());
+        ft.commit();
 
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-            }
-        });
+
+
 
         return view;
     }
+
+
+
 }

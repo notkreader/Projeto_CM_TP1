@@ -108,8 +108,6 @@ public class RequestsFragment extends Fragment {
                     isVisit = "Visits";
                     filePathAndName= "Visits/" + "visit_";
 
-
-
                 }
             }
 
@@ -266,12 +264,8 @@ public class RequestsFragment extends Fragment {
                     }
                     uploadData(title, description,imageList, location);
                 }
-
             }
         });
-
-
-
         return view;
     }
 
@@ -330,7 +324,7 @@ public class RequestsFragment extends Fragment {
                 @Override
                 public void onSuccess(Void unused) {
                     pd.dismiss();
-                    Toast.makeText(getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Visita publicada", Toast.LENGTH_SHORT).show();
 
                     titleET.setText("");
                     descriptionET.setText("");

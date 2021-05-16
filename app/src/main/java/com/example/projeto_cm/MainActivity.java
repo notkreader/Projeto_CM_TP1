@@ -45,6 +45,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity{
 
+    private static boolean existVisits;
     private AppBarConfiguration mAppBarConfiguration;
 
     public static FirebaseAuth mAuth;
@@ -142,6 +143,23 @@ public class MainActivity extends AppCompatActivity{
 
 
 
+    }
+
+    public static boolean isUpdated(){
+        MainActivity.mDataBase.child("Visits").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists() ){
+                    existVisits=true;
+                }else{
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
+        });
+        return existVisits;
     }
 
     @Override
