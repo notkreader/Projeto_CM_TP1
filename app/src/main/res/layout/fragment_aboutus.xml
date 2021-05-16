@@ -25,21 +25,18 @@
         android:layout_width="328dp"
         android:layout_height="317dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="56dp"
-        android:layout_marginBottom="350dp"
         android:background="@drawable/rounded_corners"
         android:padding="7dp"
         android:text="@string/the_click_visit_application_takes_the_user_anywhere_in_the_world_through_a_simple_click_visit_the_monument_the_palace_or_the_statue_that_i_always_wanted_to_see_up_close_any_time_or_if_you_want_to_know_more_about_something_that_can_t_find_it_place_an_order_personalized_and_you_will_receive_a_response_within_24_hours_by_part_of_the_guides_any_other_questions_you_may_have_there_is_no_way_to_contact_us_through_of_email_addresses_at_the_bottom_of_this_page_thanks_for_the_preference_and_good_visits"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_aboutUs"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintTop_toBottomOf="@+id/text_aboutUs" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -47,21 +44,18 @@
         android:layout_height="129dp"
         android:layout_marginStart="102dp"
         android:layout_marginEnd="103dp"
-        android:layout_marginBottom="80dp"
         android:contentDescription="TODO"
-        android:src="@drawable/logo_ips"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        android:src="@drawable/logo_ips_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/text_contacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="@string/contacts"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -75,17 +69,17 @@
         android:layout_width="329dp"
         android:layout_height="91dp"
         android:layout_marginStart="55dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="56dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_corners"
         android:padding="7dp"
         android:text="@string/tiago_farinha_180221011_estudantes_ips_pt_noami_costa_180221129_estudantes_ips_pt_jo_o_cabete_190221046_estudantes_ips_pt_duarte_pardal_190221022_estudantes_ips_pt"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_contacts" />
 
     <Button
         android:id="@+id/back_button"

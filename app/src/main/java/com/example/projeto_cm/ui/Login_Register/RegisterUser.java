@@ -137,4 +137,11 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                    }
                });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(this, LoginUser.class);
+        startActivity(startMain);
+        finish();
+    }
 }

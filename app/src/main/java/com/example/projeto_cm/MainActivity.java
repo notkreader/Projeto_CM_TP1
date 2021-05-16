@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        boolean isDarkModeOn;
+        /*boolean isDarkModeOn;
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             isDarkModeOn = true;
         }else{
@@ -63,13 +63,9 @@ public class MainActivity extends AppCompatActivity{
             setTheme(R.style.DarkTheme);
         } else {
             setTheme(R.style.LightTheme);
-        }
+        }*/
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        setTheme(R.style.LightTheme);
 
         super.onCreate(savedInstanceState);
 
@@ -278,4 +274,10 @@ public class MainActivity extends AppCompatActivity{
         fm.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(this, MainActivity.class);
+        startActivity(startMain);
+        finish();
+    }
 }

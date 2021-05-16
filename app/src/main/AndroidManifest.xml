@@ -24,16 +24,20 @@
 
         <activity android:name=".ui.Login_Register.LoginUser"></activity>
         <activity android:name=".ui.Login_Register.ResetPassword"></activity>
-        <activity android:name=".ui.Login_Register.RegisterUser" />
+        <activity android:name=".ui.Login_Register.RegisterUser"></activity>
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
         <activity
             android:name=".MainActivity"
             android:label="Click&amp;Visit"
             android:theme="@style/Theme.Projeto_CM.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

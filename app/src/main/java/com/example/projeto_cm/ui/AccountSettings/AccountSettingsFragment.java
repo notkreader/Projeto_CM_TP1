@@ -76,11 +76,11 @@ public class AccountSettingsFragment extends Fragment {
             ft.commit();
         });
 
-        Switch s = view.findViewById(R.id.switch_darkMode);
+        //Switch s = view.findViewById(R.id.switch_darkMode);
 
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
+        /*final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
 
         if (isDarkModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -100,7 +100,7 @@ public class AccountSettingsFragment extends Fragment {
             }
             editor.apply();
         });
-
+        */
 
         seekBar = view.findViewById(R.id.seekbar);
         contentResolver = getActivity().getContentResolver();

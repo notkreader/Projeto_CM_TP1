@@ -1,8 +1,10 @@
 package com.example.projeto_cm.ui.Login_Register;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.projeto_cm.MainActivity;
 import com.example.projeto_cm.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +26,8 @@ public class ResetPassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ActionBar acb = getSupportActionBar();
+        acb.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
@@ -67,7 +72,12 @@ public class ResetPassword extends AppCompatActivity {
                 }
             }
         });
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(this, LoginUser.class);
+        startActivity(startMain);
+        finish();
     }
 }
