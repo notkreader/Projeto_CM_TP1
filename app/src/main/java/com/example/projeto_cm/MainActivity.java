@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.projeto_cm.ui.AboutUs.AboutUsFragment;
 import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
@@ -13,8 +15,10 @@ import com.example.projeto_cm.ui.Favorites.FavoritesFragment;
 import com.example.projeto_cm.ui.Login_Register.LoginUser;
 import com.example.projeto_cm.ui.Messages.MessagesFragment;
 import com.example.projeto_cm.ui.Requests.RequestsFragment;
+import com.example.projeto_cm.ui.Requests.reqTouristAdapter;
 import com.example.projeto_cm.ui.WishList.WishListFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
+import com.example.projeto_cm.ui.home.RecFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,16 +41,21 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MainActivity extends AppCompatActivity{
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
 
     private static boolean existVisits;
     private AppBarConfiguration mAppBarConfiguration;
 
     public static FirebaseAuth mAuth;
-    public static DatabaseReference mDataBase= FirebaseDatabase.getInstance("https://clickandvisit-59882-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+    public static DatabaseReference mDataBase = FirebaseDatabase.getInstance("https://clickandvisit-59882-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+    public static boolean isGuide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,10 +109,6 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
-
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_categories, R.id.nav_favorites, R.id.nav_wishList, R.id.nav_aboutus, R.id.nav_accountSettings)
@@ -112,14 +117,19 @@ public class MainActivity extends AppCompatActivity{
 
         setMenuButtons(navigationView, drawer);
 
-        if(fbUser!=null) {
-            mDataBase.child("Users").child(fbUser.getUid()).addValueEventListener(new ValueEventListener() {
+        if (fbUser != null) {
+            mDataBase.child("Users").child(MainActivity.mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                     User user = snapshot.getValue(User.class);
-                    if (user.getIsGuide()) {
-                        navigationView.getMenu().getItem(2).setVisible(false);
-                        navigationView.getMenu().getItem(3).setVisible(false);
+                    if (user != null) {
+                        if (user.getIsGuide()) {
+                            isGuide = true;
+                            navigationView.getMenu().getItem(2).setVisible(false);
+                            navigationView.getMenu().getItem(3).setVisible(false);
+                        } else {
+                            isGuide = false;
+                        }
                     }
                 }
 

@@ -35,6 +35,7 @@ public class DescFragment extends Fragment {
         this.titulo=titulo;
         this.descricao=descricao;
         this.imgs=imgs;
+        System.out.println("AAAAAAAAAAAAAA" + imgs );
     }
 
     public static DescFragment newInstance(String param1, String param2) {
@@ -66,7 +67,9 @@ public class DescFragment extends Fragment {
 
         titleholder.setText(titulo);
         descriptionholder.setText(descricao);
-        Glide.with(getContext()).load(imgs.get(0)).into(imageholder);
+        if(imgs.get(0)!="noImage") {
+            Glide.with(getContext()).load(imgs.get(0)).into(imageholder);
+        }
 
         Button btn1 = (Button) view.findViewById(R.id.back_button_visit);
         btn1.setOnClickListener(new View.OnClickListener(){
