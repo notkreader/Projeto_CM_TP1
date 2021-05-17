@@ -113,7 +113,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
        mAuth.createUserWithEmailAndPassword(email,password)
                .addOnCompleteListener(task -> {
                    if(task.isSuccessful()){
-                       User user= new User(name, email, false);
+                       User user= new User(name, email, true, FirebaseAuth.getInstance().getCurrentUser().getUid());
                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                .setDisplayName(name).build();
                        FirebaseAuth.getInstance().getCurrentUser().updateProfile(profileUpdates);

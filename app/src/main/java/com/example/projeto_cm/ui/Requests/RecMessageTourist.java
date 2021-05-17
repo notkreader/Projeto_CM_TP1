@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.projeto_cm.MainActivity;
 import com.example.projeto_cm.R;
 import com.example.projeto_cm.Requests;
+import com.example.projeto_cm.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -83,6 +84,7 @@ public class RecMessageTourist extends Fragment {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
             }
         });
+
 
 
         return view;

@@ -316,6 +316,7 @@ public class RequestsFragment extends Fragment {
             Visits visit = new Visits(title, description, timeStamp, "noImage", location);
             if(isVisit.equals("Requests")) {
                 visit = new Requests(title, description, timeStamp, "noImage", location, userEmail );
+                MainActivity.mDataBase.child("Users").child(MainActivity.mAuth.getCurrentUser().getUid()).child("messages").child(timeStamp).setValue(visit);
             }
             DatabaseReference dbRef = MainActivity.mDataBase.child(isVisit);
             dbRef.child(timeStamp).setValue(visit).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -450,10 +451,12 @@ public class RequestsFragment extends Fragment {
                 }
             }
             break;
-            case RECORD_AUDIO_REQUEST_CODE:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            case RECORD_AUDIO_REQUEST_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this.getContext(), "Permission granteds", Toast.LENGTH_LONG).show();
                 }
+            }
+            break;
         }
 
     }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,7 @@ public class ReqTouristAdapter extends RecyclerView.Adapter<ReqTouristAdapter.My
         holder.title.setText(req.getTitulo());
         holder.email.setText(req.getUserEmail());
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,12 +72,15 @@ public class ReqTouristAdapter extends RecyclerView.Adapter<ReqTouristAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView title, email;
+        Button btn;
 
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.request_msg_title);
             email = itemView.findViewById(R.id.email_msg_req);
+            btn= itemView.findViewById(R.id.response_button);
+            btn.setVisibility(View.INVISIBLE);
 
         }
     }

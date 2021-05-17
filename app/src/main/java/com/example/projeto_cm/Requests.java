@@ -15,6 +15,14 @@ public class Requests extends Visits{
         this.userEmail=userEmail;
     }
 
+    public Requests(String titulo, String descricao, String id, ArrayList<String> images){
+        super(titulo, descricao, id, images,null);
+    }
+
+    public Requests(String titulo, String descricao, String id, String image){
+        super(titulo, descricao, id, image,null);
+    }
+
     public Requests(String titulo, String descricao, String id, String images, String location, String userEmail){
         super(titulo, descricao, id, images, location);
         this.userEmail=userEmail;
