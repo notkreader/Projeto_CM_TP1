@@ -106,6 +106,7 @@
 
     <!-- Wishlist -->
     <string name="wishlist">WishList</string>
+    <string name="dark_mode_drawer">Dark Mode</string>
 
 
 </resources>

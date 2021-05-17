@@ -18,7 +18,7 @@
         <item name="app_bar_color">#2D73EB</item>
     </style>
 
-    <!-- dark application theme.
+    <!-- dark application theme. -->
     <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#000</item>
         <item name="colorPrimaryDark">#000</item>
@@ -30,5 +30,5 @@
         <item name="drawer_text_color">@color/white</item>
         <item name="app_bar_color">#292929</item>
     </style>
-    -->
+
 </resources>

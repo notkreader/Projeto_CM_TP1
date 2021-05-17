@@ -46,5 +46,24 @@
             android:id="@+id/nav_logOut"
             android:icon="@drawable/ic_baseline_logout_24"
             android:title="@string/menu_logOut"/>
+        <item
+            android:id="@+id/nav_spacer4"
+            android:title=""
+            android:enabled="false"/>
+        <item
+            android:id="@+id/nav_spacer5"
+            android:title=""
+            android:enabled="false"/>
+        <item
+            android:id="@+id/nav_spacer6"
+            android:title=""
+            android:enabled="false"/>
+        <item
+            android:id="@+id/nav_spacer7"
+            android:title=""
+            android:enabled="false"/>
+        <item
+            android:id="@+id/nav_darkMode"
+            android:title="@string/dark_mode_drawer"/>
     </group>
 </menu>
