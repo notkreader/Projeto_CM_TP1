@@ -2,6 +2,8 @@ package com.example.projeto_cm.ui.Map;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,9 @@ import com.google.android.gms.tasks.Task;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Locale;
+
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap map;
     private FusedLocationProviderClient flpc;
@@ -57,7 +62,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getContext(), "Nenhum local selecionado", Toast.LENGTH_LONG).show();
                 else {
                     Bundle bundleLatlng = new Bundle();
-                    bundleLatlng.putString("LAT_LNG", markerLatlng.latitude + " : " + markerLatlng.longitude);
+                    try {
+                        Geocoder geocoder = new Geocoder(getContext().getApplicationContext(), Locale.getDefault());
+                        List<Address> list = geocoder.getFromLocation(markerLatlng.latitude, markerLatlng.longitude, 1);
+                        if(list.isEmpty()) {
+                            bundleLatlng.putString("LAT_LNG", "Location not provided");
+                        }
+                        else if(list.size() > 0){
+                            bundleLatlng.putString("LAT_LNG", list.get(0).getAddressLine(0));
+                        }
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     RequestsFragment reqFragment = new RequestsFragment();

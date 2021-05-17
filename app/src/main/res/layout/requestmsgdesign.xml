@@ -11,43 +11,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:padding="5sp">
+        android:padding="5sp"
+        android:background="@color/white">
 
 
         <TextView
             android:id="@+id/request_msg_title"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_width="382dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/email_msg_req"
             android:layout_width="246dp"
-            android:layout_height="48dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="9dp"
+            android:textSize="15dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.128"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/request_msg_title" />
+            app:layout_constraintTop_toBottomOf="@+id/request_msg_title"
+            app:layout_constraintVertical_bias="0.405" />
 
         <Button
             android:id="@+id/response_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="79dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:text="Reply"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintStart_toEndOf="@+id/email_msg_req"
-            app:layout_constraintTop_toBottomOf="@+id/request_msg_title"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/request_msg_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

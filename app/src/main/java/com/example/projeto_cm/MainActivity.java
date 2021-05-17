@@ -8,12 +8,9 @@ import android.view.Menu;
 
 import com.example.projeto_cm.ui.AboutUs.AboutUsFragment;
 import com.example.projeto_cm.ui.AccountSettings.AccountSettingsFragment;
-import com.example.projeto_cm.ui.Categories.CategoriesFragment;
-import com.example.projeto_cm.ui.Favorites.FavoritesFragment;
 import com.example.projeto_cm.ui.Login_Register.LoginUser;
 import com.example.projeto_cm.ui.Messages.MessagesFragment;
 import com.example.projeto_cm.ui.Requests.RequestsFragment;
-import com.example.projeto_cm.ui.WishList.WishListFragment;
 import com.example.projeto_cm.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -122,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_categories, R.id.nav_favorites, R.id.nav_wishList, R.id.nav_aboutus, R.id.nav_accountSettings)
+                R.id.nav_home, R.id.nav_aboutus, R.id.nav_accountSettings)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -224,18 +221,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setMenuButtons(NavigationView navigationView, DrawerLayout drawer){
-        navigationView.getMenu().findItem(R.id.nav_categories).setOnMenuItemClickListener(item -> {
-            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
-            fm.replace(R.id.nav_host_fragment, new CategoriesFragment());
-            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
-            if(frag!=null) {
-                fm.hide(frag);
-            }
-            fm.commit();
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
-        });
-
         navigationView.getMenu().findItem(R.id.nav_aboutus).setOnMenuItemClickListener(item -> {
             FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
             fm.replace(R.id.nav_host_fragment, new AboutUsFragment());
@@ -251,30 +236,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView.getMenu().findItem(R.id.nav_accountSettings).setOnMenuItemClickListener(item -> {
             FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
             fm.replace(R.id.nav_host_fragment, new AccountSettingsFragment());
-            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
-            if(frag!=null) {
-                fm.hide(frag);
-            }
-            fm.commit();
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
-        });
-
-        navigationView.getMenu().findItem(R.id.nav_favorites).setOnMenuItemClickListener(item -> {
-            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
-            fm.replace(R.id.nav_host_fragment, new FavoritesFragment());
-            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
-            if(frag!=null) {
-                fm.hide(frag);
-            }
-            fm.commit();
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
-        });
-
-        navigationView.getMenu().findItem(R.id.nav_wishList).setOnMenuItemClickListener(item -> {
-            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
-            fm.replace(R.id.nav_host_fragment, new WishListFragment());
             Fragment frag = getSupportFragmentManager().findFragmentById(R.id.mid_frag);
             if(frag!=null) {
                 fm.hide(frag);

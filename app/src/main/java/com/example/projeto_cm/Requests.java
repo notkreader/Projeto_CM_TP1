@@ -2,7 +2,7 @@ package com.example.projeto_cm;
 
 import java.util.ArrayList;
 
-public class Requests extends Visits{
+public class Requests extends Visits {
 
     public String userEmail;
 

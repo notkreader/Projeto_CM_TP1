@@ -29,8 +29,8 @@ public class MessagesFragment extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment, new HomeFragment());
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.mid_frag, new HomeFragment());
                 ft.commit();
             }
         });

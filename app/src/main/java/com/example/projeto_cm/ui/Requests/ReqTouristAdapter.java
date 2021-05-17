@@ -36,15 +36,15 @@ public class ReqTouristAdapter extends RecyclerView.Adapter<ReqTouristAdapter.My
     @NotNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate( R.layout.requestmsgdesign, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.requestmsgdesign, parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
         Requests req = mList.get(position);
-        holder.title.setText(req.getTitulo());
-        holder.email.setText(req.getUserEmail());
+        holder.title.setText("Title: " + req.getTitulo());
+        holder.email.setText("Email: " + req.getUserEmail());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class ReqTouristAdapter extends RecyclerView.Adapter<ReqTouristAdapter.My
                 AppCompatActivity activity= (AppCompatActivity) v.getContext();
                 FragmentTransaction fm = activity.getSupportFragmentManager().beginTransaction();
 
-                fm.replace(R.id.nav_host_fragment, new DescFragment(req.getTitulo(),req.getDescricao(),req.getImages())).addToBackStack(null);
+                fm.replace(R.id.nav_host_fragment, new DescFragment(req.getTitulo(), req.getLocation(), req.getDescricao(), req.getImages())).addToBackStack(null);
 
                 Fragment frag = activity.getSupportFragmentManager().findFragmentById(R.id.mid_frag);
                 if(frag!=null) {

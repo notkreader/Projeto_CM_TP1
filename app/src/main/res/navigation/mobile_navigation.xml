@@ -11,11 +11,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_categories"
-        android:name="com.example.projeto_cm.ui.Categories.CategoriesFragment"
-        tools:layout="@layout/fragment_categories" />
-
-    <fragment
         android:id="@+id/nav_favorites"
         android:name="com.example.projeto_cm.ui.Favorites.FavoritesFragment"
         tools:layout="@layout/fragment_favorites" />
@@ -36,7 +31,7 @@
         tools:layout="@layout/fragment_accountsettings" />
 
     <fragment
-        android:id="@+id/app_bar_messages"
+        android:id="@+id/nav_messages"
         android:name="com.example.projeto_cm.ui.Messages.MessagesFragment"
         tools:layout="@layout/fragment_messages" />
 

@@ -9,18 +9,6 @@
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home"/>
         <item
-            android:id="@+id/nav_categories"
-            android:icon="@drawable/ic_baseline_apps_24"
-            android:title="@string/menu_categories" />
-        <item
-            android:id="@+id/nav_favorites"
-            android:icon="@android:drawable/btn_star_big_on"
-            android:title="@string/menu_favorites" />
-        <item
-            android:id="@+id/nav_wishList"
-            android:icon="@drawable/ic_baseline_favorite_24"
-            android:title="@string/menu_wishlist" />
-        <item
             android:id="@+id/nav_aboutus"
             android:icon="@drawable/ic_baseline_edit_24"
             android:title="@string/menu_aboutus" />
@@ -42,14 +30,15 @@
             android:id="@+id/nav_spacer3"
             android:title=""
             android:enabled="false"/>
-        <item
-            android:id="@+id/nav_logOut"
-            android:icon="@drawable/ic_baseline_logout_24"
-            android:title="@string/menu_logOut"/>
+
         <item
             android:id="@+id/nav_spacer4"
             android:title=""
             android:enabled="false"/>
+        <item
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="@string/menu_logOut"/>
         <item
             android:id="@+id/nav_spacer5"
             android:title=""
@@ -60,6 +49,10 @@
             android:enabled="false"/>
         <item
             android:id="@+id/nav_spacer7"
+            android:title=""
+            android:enabled="false"/>
+        <item
+            android:id="@+id/nav_spacer8"
             android:title=""
             android:enabled="false"/>
         <item

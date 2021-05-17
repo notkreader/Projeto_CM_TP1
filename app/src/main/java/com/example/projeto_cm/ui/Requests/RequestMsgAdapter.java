@@ -35,15 +35,16 @@ public class RequestMsgAdapter extends FirebaseRecyclerAdapter<Requests, Request
 
     @Override
     protected void onBindViewHolder(@NonNull @NotNull myviewholder holder, int position, @NonNull @NotNull Requests model) {
-        holder.title.setText(model.getTitulo());
-        holder.email.setText(model.getUserEmail());
+        holder.title.setText("Title: " + model.getTitulo());
+        holder.email.setText("Email: " + model.getUserEmail());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity= (AppCompatActivity) v.getContext();
                 FragmentTransaction fm = activity.getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.nav_host_fragment, new DescFragment(model.getTitulo(),model.getDescricao(), model.getImages())).addToBackStack(null);
+
+                fm.replace(R.id.nav_host_fragment, new DescFragment(model.getTitulo(), model.getLocation(), model.getDescricao(), model.getImages())).addToBackStack(null);
                 Fragment frag = activity.getSupportFragmentManager().findFragmentById(R.id.mid_frag);
                 if(frag!=null) {
                     fm.hide(frag);
@@ -67,8 +68,6 @@ public class RequestMsgAdapter extends FirebaseRecyclerAdapter<Requests, Request
                 fm.commit();
             }
         });
-
-
     }
 
     @NonNull
@@ -87,7 +86,7 @@ public class RequestMsgAdapter extends FirebaseRecyclerAdapter<Requests, Request
         public myviewholder(@NonNull @NotNull View itemView) {
             super(itemView);
 
-           email =itemView.findViewById(R.id.email_msg_req);
+            email =itemView.findViewById(R.id.email_msg_req);
             title= itemView.findViewById(R.id.request_msg_title);
             responseBtn = itemView.findViewById(R.id.response_button);
 

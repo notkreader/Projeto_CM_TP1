@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.projeto_cm.R;
+import com.example.projeto_cm.ui.Messages.MessagesFragment;
 
 import java.util.ArrayList;
 
@@ -25,17 +26,26 @@ public class DescFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    String titulo,descricao;
+    String titulo, descricao, localizacao;
     ArrayList<String> imgs;
     public DescFragment() {
 
     }
-
+    /*
     public DescFragment(String titulo, String descricao, ArrayList<String> imgs) {
         this.titulo=titulo;
         this.descricao=descricao;
         this.imgs=imgs;
-        System.out.println("AAAAAAAAAAAAAA" + imgs );
+        //System.out.println("AAAAAAAAAAAAAA" + imgs );
+    }
+    */
+
+    public DescFragment(String titulo, String localizacao, String descricao, ArrayList<String> imgs) {
+        this.titulo=titulo;
+        this.localizacao = localizacao;
+        this.descricao=descricao;
+        this.imgs=imgs;
+        //System.out.println("AAAAAAAAAAAAAA" + imgs );
     }
 
     public static DescFragment newInstance(String param1, String param2) {
@@ -63,9 +73,11 @@ public class DescFragment extends Fragment {
 
         ImageView imageholder= view.findViewById(R.id.visit_imgs);
         TextView titleholder = view.findViewById(R.id.visit_title);
+        TextView locationholder = view.findViewById(R.id.visit_location);
         TextView descriptionholder = view.findViewById(R.id.visit_description);
 
         titleholder.setText(titulo);
+        locationholder.setText(localizacao);
         descriptionholder.setText(descricao);
         if(imgs.get(0)!="noImage") {
             Glide.with(getContext()).load(imgs.get(0)).into(imageholder);
@@ -76,7 +88,7 @@ public class DescFragment extends Fragment {
             @Override
             public void onClick(View v){
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment, new HomeFragment()).addToBackStack(null).commit();
+                ft.replace(R.id.nav_host_fragment, new MessagesFragment()).addToBackStack(null).commit();
             }
         });
 

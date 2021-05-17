@@ -22,14 +22,12 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mid_frag"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="305dp"
-        android:layout_height="607dp"
+        android:layout_width="363dp"
+        android:layout_height="654dp"
         app:defaultNavHost="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintEnd_toEndOf="@+id/nav_host_fragment"
+        app:layout_constraintStart_toStartOf="@+id/nav_host_fragment"
         app:navGraph="@navigation/mobile_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,46 +20,107 @@
             android:rotation="180"
             android:text=">"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_aboutUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/messages"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/visit_imgs"
-            android:layout_width="276dp"
-            android:layout_height="273dp"
-            android:layout_marginTop="168dp"
+            android:layout_width="242dp"
+            android:layout_height="231dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visit_location"
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/visit_description"
-            android:layout_width="298dp"
-            android:layout_height="204dp"
-            android:layout_marginTop="53dp"
-            android:layout_marginBottom="56dp"
-            android:scrollbars = "vertical"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
+            android:id="@+id/visit_desc_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:text="Description:"
+            android:textColor="@color/white"
+            android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/visit_imgs" />
 
         <TextView
-            android:id="@+id/visit_title"
-            android:layout_width="170dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="21dp"
+            android:id="@+id/visit_description"
+            android:layout_width="351dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:scrollbars="vertical"
             android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/visit_imgs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.232"
+            android:textColor="@color/white"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/visit_desc_txt" />
+
+        <TextView
+            android:id="@+id/visit_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Title:"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_button_visit" />
+
+        <TextView
+            android:id="@+id/visit_title"
+            android:layout_width="349dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visit_title_txt" />
+
+        <TextView
+            android:id="@+id/visit_location_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="Location:"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visit_title" />
+
+        <TextView
+            android:id="@+id/visit_location"
+            android:layout_width="347dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visit_location_txt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

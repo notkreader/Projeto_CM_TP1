@@ -35,6 +35,7 @@ public class MyAdapter extends FirebaseRecyclerAdapter<Visits, MyAdapter.myviewh
     @Override
     protected void onBindViewHolder(@NonNull @NotNull myviewholder holder, int position, @NonNull @NotNull Visits model) {
         holder.title.setText(model.getTitulo());
+        holder.location.setText(model.getLocation());
         Glide.with(holder.img1.getContext()).load(model.getImages().get(0)).into(holder.img1);
 
         holder.img1.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +44,7 @@ public class MyAdapter extends FirebaseRecyclerAdapter<Visits, MyAdapter.myviewh
                 AppCompatActivity activity= (AppCompatActivity) v.getContext();
 
                 FragmentTransaction fm = activity.getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.nav_host_fragment, new DescFragment(model.getTitulo(),model.getDescricao(), model.getImages())).addToBackStack(null);
+                fm.replace(R.id.nav_host_fragment, new DescFragment(model.getTitulo(), model.getLocation(), model.getDescricao(), model.getImages())).addToBackStack(null);
                 Fragment frag = activity.getSupportFragmentManager().findFragmentById(R.id.mid_frag);
                 if(frag!=null) {
                     fm.hide(frag);
@@ -64,14 +65,16 @@ public class MyAdapter extends FirebaseRecyclerAdapter<Visits, MyAdapter.myviewh
 
     public class myviewholder extends RecyclerView.ViewHolder{
         ImageView img1;
-        TextView title;
+        TextView title, location;
 
 
         public myviewholder(@NonNull @NotNull View itemView) {
             super(itemView);
 
-            img1 =itemView.findViewById(R.id.visitImg);
-            title= itemView.findViewById(R.id.visitTitle);
+            img1 = itemView.findViewById(R.id.visitImg);
+            title = itemView.findViewById(R.id.visitTitle);
+            location = itemView.findViewById(R.id.visitLocal);
+
         }
     }
 

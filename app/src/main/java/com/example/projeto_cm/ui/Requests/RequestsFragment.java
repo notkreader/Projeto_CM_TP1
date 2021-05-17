@@ -98,7 +98,7 @@ public class RequestsFragment extends Fragment {
         if(MainActivity.isGuide) {
             TextView request = (TextView) view.findViewById(R.id.text_aboutUs);
             request.setText("Guide Visit");
-            sendBtn.setText("Publish");
+            //sendBtn.setText("Publish");
             if(Locale.getDefault().getLanguage().equals("es")){
                 request.setText("Visita de Guía");
             }else if(Locale.getDefault().getLanguage().equals("pt")){
@@ -453,7 +453,7 @@ public class RequestsFragment extends Fragment {
             break;
             case RECORD_AUDIO_REQUEST_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this.getContext(), "Permission granteds", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.getContext(), "Permission granted", Toast.LENGTH_LONG).show();
                 }
             }
             break;
